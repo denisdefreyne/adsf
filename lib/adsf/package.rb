@@ -30,7 +30,7 @@ module Adsf
         s.platform              = Gem::Platform::RUBY
         s.summary               = 'a tiny static file server'
         s.description           = s.summary
-        s.homepage              = 'http://adsf.stoneship.org/'
+        s.homepage              = 'http://stoneship.org/software/adsf/'
         s.rubyforge_project     = 'adsf'
 
         s.author                = 'Denis Defreyne'
