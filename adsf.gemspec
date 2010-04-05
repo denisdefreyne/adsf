@@ -1,0 +1,27 @@
+# encoding: utf-8
+
+$LOAD_PATH.unshift(File.expand_path('../lib/', __FILE__))
+require 'adsf'
+
+Gem::Specification.new do |s|
+  s.name                  = 'adsf'
+  s.version               = Adsf::VERSION
+  s.platform              = Gem::Platform::RUBY
+  s.summary               = 'a tiny static file server'
+  s.description           = s.summary
+  s.homepage              = 'http://stoneship.org/software/adsf/'
+  s.rubyforge_project     = 'adsf'
+
+  s.author                = 'Denis Defreyne'
+  s.email                 = 'denis.defreyne@stoneship.org'
+
+  s.required_ruby_version = '>= 1.8.5'
+  s.add_runtime_dependency('rack', '>= 1.0.0')
+
+  s.has_rdoc              = false
+
+  s.files                 = Dir['[A-Z]*'] + Dir['bin/**/*'] + Dir['lib/**/*']
+  s.executables           = [ 'adsf' ]
+  s.require_path          = 'lib'
+  s.bindir                = 'bin'
+end
