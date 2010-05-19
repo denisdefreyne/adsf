@@ -8,9 +8,10 @@ require 'adsf'
 
 # Parse options
 options = {
-  :handler => nil,
-  :port    => 3000,
-  :root    => '.'
+  :handler            => nil,
+  :port               => 3000,
+  :index_filenames => %w( index.html ),
+  :root               => '.'
 }
 OptionParser.new do |opts|
   opts.banner = "Usage: adsf [options]"
@@ -27,6 +28,11 @@ OptionParser.new do |opts|
   opts.on('-h', '--help', 'Display help') do |o|
     puts opts
     exit
+  end
+
+  # index filenames
+  opts.on('-i', '--index-filenames [index-filenames]', 'Specify index filenames (comma-separated)') do |o|
+    options[:index_filenames] = o.split(',')
   end
 
   # port
@@ -55,7 +61,9 @@ app = Rack::Builder.new do
   use Rack::CommonLogger
   use Rack::ShowExceptions
   use Rack::Lint
-  use Adsf::Rack::IndexFileFinder, :root => options[:root]
+  use Adsf::Rack::IndexFileFinder,
+    :root            => options[:root],
+    :index_filenames => options[:index_filenames]
   run Rack::File.new(options[:root])
 end.to_app
 
