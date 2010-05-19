@@ -6,7 +6,10 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Unit::TestCase
   include Adsf::Test::Helpers
 
   def app
-    ::Adsf::Rack::IndexFileFinder.new(stub_app, :root => '.')
+    ::Adsf::Rack::IndexFileFinder.new(
+      stub_app,
+      (@options || {}).merge({ :root => '.' })
+    )
   end
 
   def stub_app
@@ -62,6 +65,21 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Unit::TestCase
 
     # Create test file
     File.open('replicants/index.html', 'w') { |io| io.write('Leon, Roy, Pris, Zhora, etc.') }
+
+    # Request test directory
+    get '/replicants/'
+    assert last_response.ok?
+    assert_equal 'Leon, Roy, Pris, Zhora, etc.', last_response.body
+  end
+
+  def test_get_dir_with_custom_index_file
+    @options = { :index_filenames => [ 'list.xml' ] }
+
+    # Create test directory
+    FileUtils.mkdir('replicants')
+
+    # Create test file
+    File.open('replicants/list.xml', 'w') { |io| io.write('Leon, Roy, Pris, Zhora, etc.') }
 
     # Request test directory
     get '/replicants/'
