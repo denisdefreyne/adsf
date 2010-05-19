@@ -22,6 +22,11 @@ Some more details about adsf:
 * Rack is the only dependency.
 * It is licenced under the MIT licence.
 
+== Authors
+
+* Denis Defreyne
+* Mark Meves
+
 == Contact
 
 You can reach me at <denis.defreyne@stoneship.org>.
