@@ -1,6 +1,11 @@
 adsf News
 =========
 
+1.1.1
+-----
+
+* Made SIGINT/SIGTERM cause proper exit
+
 1.1.0
 -----
 
