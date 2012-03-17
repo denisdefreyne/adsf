@@ -42,7 +42,6 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Unit::TestCase
 
     # Request test directory
     get '/replicants/'
-    #STDOUT.puts last_response.public_methods.sort.inspect
     assert last_response.not_found?
   end
 
