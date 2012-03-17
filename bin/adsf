@@ -67,5 +67,10 @@ app = Rack::Builder.new do
   run Rack::File.new(options[:root])
 end.to_app
 
+# Be quittable
+%w( INT TERM ).each do |s|
+  Signal.trap(s) { handler.shutdown }
+end
+
 # Run
 handler.run(app, :Port => options[:port])
