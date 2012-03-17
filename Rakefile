@@ -4,7 +4,7 @@ require 'adsf'
 
 desc 'Run all tests'
 task :test do
-  $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/..'))
+  $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
 
   require 'minitest/unit'
   MiniTest::Unit.autorun
