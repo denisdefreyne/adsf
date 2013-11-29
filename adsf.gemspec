@@ -8,9 +8,8 @@ Gem::Specification.new do |s|
   s.version               = Adsf::VERSION
   s.platform              = Gem::Platform::RUBY
   s.summary               = 'a tiny static file server'
-  s.description           = s.summary
-  s.homepage              = 'http://stoneship.org/software/adsf/'
-  s.rubyforge_project     = 'adsf'
+  s.description           = 'A web server that can be spawned in any directory'
+  s.homepage              = 'http://github.com/ddfreyne/adsf/'
   s.license               = 'MIT'
 
   s.author                = 'Denis Defreyne'
