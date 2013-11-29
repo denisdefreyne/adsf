@@ -2,7 +2,7 @@
 begin
   require 'minitest/unit'
   require 'rack/test'
-  require 'mocha'
+  require 'mocha/setup'
 rescue => e
   $stderr.puts "To run the tests, you need MiniTest, Mocha and Rack::Test."
   raise e
