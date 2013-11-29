@@ -11,7 +11,7 @@ adsf (A Dead Simple Fileserver) is a tiny static file server that you can launch
 	drwxr-xr-x  2 ddfreyne  staff  68 May 29 10:04 projects
 
 	▸ adsf
-	2009-05-29 10:04:44] INFO  WEBrick 1.3.1
+	[2009-05-29 10:04:44] INFO  WEBrick 1.3.1
 	[2009-05-29 10:04:44] INFO  ruby 1.8.7 (2008-08-11) [i686-darwin9.6.1]
 	[2009-05-29 10:04:44] INFO  WEBrick::HTTPServer#start: pid=2757 port=3000
 
