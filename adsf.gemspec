@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.description           = s.summary
   s.homepage              = 'http://stoneship.org/software/adsf/'
   s.rubyforge_project     = 'adsf'
+  s.license               = 'MIT'
 
   s.author                = 'Denis Defreyne'
   s.email                 = 'denis.defreyne@stoneship.org'
