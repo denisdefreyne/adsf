@@ -1,6 +1,11 @@
 adsf News
 =========
 
+1.2.0
+-----
+
+* Add '--local-only' and `--listen-address' options (#1) [Ed Brannin]
+
 1.1.1
 -----
 
