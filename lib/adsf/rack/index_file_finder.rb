@@ -15,7 +15,7 @@ module Adsf::Rack
 
       # Redirect if necessary
       if ::File.directory?(path) && path_info !~ /\/$/
-        new_path_info = path_info + '/'
+        new_path_info = env['PATH_INFO'] + '/'
         return [
           302,
           { 'Location' => new_path_info, 'Content-Type' => 'text/html' },
