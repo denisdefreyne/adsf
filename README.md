@@ -40,10 +40,11 @@ You can also specify an `:index_filenames` option, containing the names of the i
 	  :index_filenames => %w( index.html index.xhtml index.xml )
 	run Rack::File.new("public/")
 
-Authors
--------
+Contributors
+------------
 
-* Denis Defreyne
+* Ed Brannin
+* Larissa Reis
 * Mark Meves
 
 Contact
