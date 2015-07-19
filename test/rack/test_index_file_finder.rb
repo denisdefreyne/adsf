@@ -86,4 +86,14 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Unit::TestCase
     assert_equal 'Leon, Roy, Pris, Zhora, etc.', last_response.body
   end
 
+  def test_get_dir_without_slash_with_escaped_url
+    # Create test directory
+    FileUtils.mkdir('animal replicants')
+
+    # Request test directory
+    get '/animal%20replicants'
+    assert last_response.redirect?
+    assert_equal '/animal%20replicants/', last_response.location
+  end
+
 end
