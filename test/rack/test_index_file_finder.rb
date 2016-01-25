@@ -1,6 +1,6 @@
 require 'test/helper'
 
-class Adsf::Test::Rack::IndexFileFinder < MiniTest::Unit::TestCase
+class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
 
   include Rack::Test::Methods
   include Adsf::Test::Helpers

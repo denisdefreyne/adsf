@@ -9,4 +9,5 @@ end
 group :testing do
   gem 'mocha'
   gem 'rack-test'
+  gem 'minitest'
 end
