@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+  - 2.1.2
+  - 2.2.2
+  - 2.3.0
+  - ruby-head
+branches:
+  only:
+    - "master"
+    - "/^release-/"
+before_install: gem install bundler
+cache: bundler
+sudo: false
+git:
+  depth: 1
