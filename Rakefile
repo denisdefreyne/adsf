@@ -6,8 +6,8 @@ desc 'Run all tests'
 task :test do
   $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
 
-  require 'minitest/unit'
-  MiniTest::Unit.autorun
+  require 'minitest/autorun'
+  MiniTest.autorun
 
   test_files = Dir["test/**/test_*.rb"]
   test_files.each { |f| require f }

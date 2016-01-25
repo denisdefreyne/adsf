@@ -60,11 +60,7 @@ end.parse!
 # Find handler
 handler = Rack::Handler.get(options[:handler])
 if handler.nil?
-  begin
-    handler = Rack::Handler::Mongrel
-  rescue LoadError
-    handler = Rack::Handler::WEBrick
-  end
+  handler = Rack::Handler::WEBrick
 end
 
 # Create app
