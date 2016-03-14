@@ -1,6 +1,11 @@
 adsf News
 =========
 
+1.2.1
+-----
+
+* Fixed compatibility with Ruby 2.3.0 (#3) [Vipul Amler]
+
 1.2.0
 -----
 
