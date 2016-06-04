@@ -17,7 +17,7 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
 
   def test_get_file
     # Create test file
-    File.open('motto.txt', 'w') { |io| io.write('More human than human') }
+    File.write('motto.txt', 'More human than human')
 
     # Request test file
     get '/motto.txt'
@@ -49,7 +49,7 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
     FileUtils.mkdir('replicants')
 
     # Create test file
-    File.open('replicants/index.txt', 'w') { |io| io.write('Leon, Roy, Pris, Zhora, etc.') }
+    File.write('replicants/index.txt', 'Leon, Roy, Pris, Zhora, etc.')
 
     # Request test directory
     get '/replicants'
@@ -62,7 +62,7 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
     FileUtils.mkdir('replicants')
 
     # Create test file
-    File.open('replicants/index.html', 'w') { |io| io.write('Leon, Roy, Pris, Zhora, etc.') }
+    File.write('replicants/index.html', 'Leon, Roy, Pris, Zhora, etc.')
 
     # Request test directory
     get '/replicants/'
@@ -77,7 +77,7 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
     FileUtils.mkdir('replicants')
 
     # Create test file
-    File.open('replicants/list.xml', 'w') { |io| io.write('Leon, Roy, Pris, Zhora, etc.') }
+    File.write('replicants/list.xml', 'Leon, Roy, Pris, Zhora, etc.')
 
     # Request test directory
     get '/replicants/'
