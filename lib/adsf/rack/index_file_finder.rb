@@ -1,11 +1,9 @@
 module Adsf::Rack
-
   class IndexFileFinder
-
     def initialize(app, options)
       @app = app
-      @root = options[:root] or raise ArgumentError, ':root option is required but was not given'
-      @index_filenames = options[:index_filenames] || [ 'index.html' ]
+      (@root = options[:root]) || raise(ArgumentError, ':root option is required but was not given')
+      @index_filenames = options[:index_filenames] || ['index.html']
     end
 
     def call(env)
@@ -19,7 +17,7 @@ module Adsf::Rack
         return [
           302,
           { 'Location' => new_path_info, 'Content-Type' => 'text/html' },
-          [ "Redirecting you to #{new_path_info}&hellip;" ]
+          ["Redirecting you to #{new_path_info}&hellip;"]
         ]
       end
 
@@ -35,14 +33,12 @@ module Adsf::Rack
       @app.call(new_env)
     end
 
-  private
+    private
 
     def index_file_in(dir)
       @index_filenames.find do |index_filename|
         ::File.file?(::File.join(dir, index_filename))
       end
     end
-
   end
-
 end

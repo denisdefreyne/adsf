@@ -9,8 +9,8 @@ task :test do
   require 'minitest/autorun'
   MiniTest.autorun
 
-  test_files = Dir["test/**/test_*.rb"]
+  test_files = Dir['test/**/test_*.rb']
   test_files.each { |f| require f }
 end
 
-task :default => :test
+task default: :test

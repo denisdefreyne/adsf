@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.has_rdoc              = false
 
   s.files                 = Dir['[A-Z]*'] + Dir['bin/**/*'] + Dir['lib/**/*']
-  s.executables           = [ 'adsf' ]
+  s.executables           = ['adsf']
   s.require_path          = 'lib'
   s.bindir                = 'bin'
 end

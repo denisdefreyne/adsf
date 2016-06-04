@@ -1,14 +1,13 @@
 require 'test/helper'
 
 class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
-
   include Rack::Test::Methods
   include Adsf::Test::Helpers
 
   def app
     ::Adsf::Rack::IndexFileFinder.new(
       stub_app,
-      (@options || {}).merge({ :root => '.' })
+      (@options || {}).merge(root: '.')
     )
   end
 
@@ -72,7 +71,7 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
   end
 
   def test_get_dir_with_custom_index_file
-    @options = { :index_filenames => [ 'list.xml' ] }
+    @options = { index_filenames: ['list.xml'] }
 
     # Create test directory
     FileUtils.mkdir('replicants')
@@ -95,5 +94,4 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
     assert last_response.redirect?
     assert_equal '/animal%20replicants/', last_response.location
   end
-
 end

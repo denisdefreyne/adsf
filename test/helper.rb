@@ -4,7 +4,7 @@ begin
   require 'rack/test'
   require 'mocha/setup'
 rescue => e
-  $stderr.puts "To run the tests, you need MiniTest, Mocha and Rack::Test."
+  $stderr.puts 'To run the tests, you need MiniTest, Mocha and Rack::Test.'
   raise e
 end
 
@@ -13,11 +13,10 @@ $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/../lib'))
 require 'adsf'
 
 module Adsf::Test
-  module Rack ; end
+  module Rack; end
 end
 
 module Adsf::Test::Helpers
-
   def setup
     # Clean up
     GC.start
@@ -40,5 +39,4 @@ module Adsf::Test::Helpers
     $stdout = STDOUT
     $stderr = STDERR
   end
-
 end

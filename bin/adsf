@@ -8,14 +8,14 @@ require 'adsf'
 
 # Parse options
 options = {
-  :handler            => nil,
-  :port               => 3000,
-  :index_filenames => %w( index.html ),
-  :root               => '.',
-  :host               => '0.0.0.0',
+  handler: nil,
+  port: 3000,
+  index_filenames: %w( index.html ),
+  root: '.',
+  host: '0.0.0.0'
 }
 OptionParser.new do |opts|
-  opts.banner = "Usage: adsf [options]"
+  opts.banner = 'Usage: adsf [options]'
 
   opts.separator ''
   opts.separator 'Specific options:'
@@ -26,7 +26,7 @@ OptionParser.new do |opts|
   end
 
   # help
-  opts.on('-h', '--help', 'Display help') do |o|
+  opts.on('-h', '--help', 'Display help') do |_o|
     puts opts
     exit
   end
@@ -59,9 +59,7 @@ end.parse!
 
 # Find handler
 handler = Rack::Handler.get(options[:handler])
-if handler.nil?
-  handler = Rack::Handler::WEBrick
-end
+handler = Rack::Handler::WEBrick if handler.nil?
 
 # Create app
 app = Rack::Builder.new do
@@ -69,8 +67,8 @@ app = Rack::Builder.new do
   use Rack::ShowExceptions
   use Rack::Lint
   use Adsf::Rack::IndexFileFinder,
-    :root            => options[:root],
-    :index_filenames => options[:index_filenames]
+      root: options[:root],
+      index_filenames: options[:index_filenames]
   run Rack::File.new(options[:root])
 end.to_app
 
@@ -80,4 +78,4 @@ end.to_app
 end
 
 # Run
-handler.run(app, :Port => options[:port], :Host => options[:host])
+handler.run(app, Port: options[:port], Host: options[:host])
