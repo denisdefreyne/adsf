@@ -1,14 +1,13 @@
 require 'test/helper'
 
 class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
-
   include Rack::Test::Methods
   include Adsf::Test::Helpers
 
   def app
     ::Adsf::Rack::IndexFileFinder.new(
       stub_app,
-      (@options || {}).merge({ :root => '.' })
+      (@options || {}).merge(root: '.')
     )
   end
 
@@ -18,7 +17,7 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
 
   def test_get_file
     # Create test file
-    File.open('motto.txt', 'w') { |io| io.write('More human than human') }
+    File.write('motto.txt', 'More human than human')
 
     # Request test file
     get '/motto.txt'
@@ -50,7 +49,7 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
     FileUtils.mkdir('replicants')
 
     # Create test file
-    File.open('replicants/index.txt', 'w') { |io| io.write('Leon, Roy, Pris, Zhora, etc.') }
+    File.write('replicants/index.txt', 'Leon, Roy, Pris, Zhora, etc.')
 
     # Request test directory
     get '/replicants'
@@ -63,7 +62,7 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
     FileUtils.mkdir('replicants')
 
     # Create test file
-    File.open('replicants/index.html', 'w') { |io| io.write('Leon, Roy, Pris, Zhora, etc.') }
+    File.write('replicants/index.html', 'Leon, Roy, Pris, Zhora, etc.')
 
     # Request test directory
     get '/replicants/'
@@ -72,13 +71,13 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
   end
 
   def test_get_dir_with_custom_index_file
-    @options = { :index_filenames => [ 'list.xml' ] }
+    @options = { index_filenames: ['list.xml'] }
 
     # Create test directory
     FileUtils.mkdir('replicants')
 
     # Create test file
-    File.open('replicants/list.xml', 'w') { |io| io.write('Leon, Roy, Pris, Zhora, etc.') }
+    File.write('replicants/list.xml', 'Leon, Roy, Pris, Zhora, etc.')
 
     # Request test directory
     get '/replicants/'
@@ -95,5 +94,4 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
     assert last_response.redirect?
     assert_equal '/animal%20replicants/', last_response.location
   end
-
 end

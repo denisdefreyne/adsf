@@ -15,13 +15,13 @@ Gem::Specification.new do |s|
   s.author                = 'Denis Defreyne'
   s.email                 = 'denis.defreyne@stoneship.org'
 
-  s.required_ruby_version = '>= 1.8.5'
+  s.required_ruby_version = '>= 2.1.0'
   s.add_runtime_dependency('rack', '>= 1.0.0')
 
   s.has_rdoc              = false
 
   s.files                 = Dir['[A-Z]*'] + Dir['bin/**/*'] + Dir['lib/**/*']
-  s.executables           = [ 'adsf' ]
+  s.executables           = ['adsf']
   s.require_path          = 'lib'
   s.bindir                = 'bin'
 end
