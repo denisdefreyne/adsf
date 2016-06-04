@@ -1,5 +1,3 @@
-# Load adsf
-$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/lib'))
 require 'adsf'
 require 'rubocop/rake_task'
 
