@@ -1,6 +1,6 @@
 # Load unit testing stuff
 begin
-  require 'minitest/unit'
+  require 'minitest/autorun'
   require 'rack/test'
   require 'mocha/setup'
 rescue => e
