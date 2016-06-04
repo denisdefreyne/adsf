@@ -1,6 +1,7 @@
 # Load adsf
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/lib'))
 require 'adsf'
+require 'rubocop/rake_task'
 
 desc 'Run all tests'
 task :test do
@@ -13,4 +14,9 @@ task :test do
   test_files.each { |f| require f }
 end
 
-task default: :test
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.options  = %w( --display-cop-names --format simple )
+  task.patterns = ['lib/**/*.rb', 'spec/**/*.rb']
+end
+
+task default: [:test, :rubocop]
