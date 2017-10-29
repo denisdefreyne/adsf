@@ -1,5 +1,4 @@
-$LOAD_PATH.unshift(File.expand_path('../lib/', __FILE__))
-require 'adsf'
+require_relative 'lib/adsf/version'
 
 Gem::Specification.new do |s|
   s.name                  = 'adsf'
