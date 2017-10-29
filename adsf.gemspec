@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.email                 = 'denis.defreyne@stoneship.org'
 
   s.required_ruby_version = '>= 2.1.0'
-  s.add_runtime_dependency('rack', '>= 1.0.0')
+  s.add_runtime_dependency('rack', '>= 1.0.0', '<= 3.0.0')
 
   s.has_rdoc              = false
 
