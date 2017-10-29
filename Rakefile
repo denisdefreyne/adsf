@@ -3,7 +3,7 @@ require 'rubocop/rake_task'
 
 desc 'Run all tests'
 task :test do
-  $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
+  $LOAD_PATH.unshift(__dir__)
 
   require 'minitest/autorun'
   MiniTest.autorun
@@ -12,9 +12,6 @@ task :test do
   test_files.each { |f| require f }
 end
 
-RuboCop::RakeTask.new(:rubocop) do |task|
-  task.options  = %w( --display-cop-names --format simple )
-  task.patterns = ['lib/**/*.rb', 'spec/**/*.rb']
-end
+RuboCop::RakeTask.new(:rubocop)
 
-task default: [:test, :rubocop]
+task default: %i[test rubocop]

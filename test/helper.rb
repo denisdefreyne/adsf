@@ -1,12 +1,7 @@
 # Load unit testing stuff
-begin
-  require 'minitest/autorun'
-  require 'rack/test'
-  require 'mocha/setup'
-rescue => e
-  $stderr.puts 'To run the tests, you need MiniTest, Mocha and Rack::Test.'
-  raise e
-end
+require 'minitest/autorun'
+require 'rack/test'
+require 'mocha/setup'
 
 # Load adsf
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/../lib'))

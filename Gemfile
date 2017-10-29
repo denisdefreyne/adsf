@@ -5,12 +5,9 @@ gemspec
 gem 'rack'
 
 group :development do
-  gem 'rake'
-  gem 'rubocop'
-end
-
-group :testing do
+  gem 'minitest'
   gem 'mocha'
   gem 'rack-test'
-  gem 'minitest'
+  gem 'rake'
+  gem 'rubocop'
 end

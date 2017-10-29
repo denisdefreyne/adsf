@@ -1,3 +1,7 @@
+AllCops:
+  TargetRubyVersion: 2.1
+  DisplayCopNames: true
+
 Metrics/LineLength:
   Enabled: false
 

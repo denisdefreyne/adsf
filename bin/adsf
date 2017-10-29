@@ -10,7 +10,7 @@ require 'adsf'
 options = {
   handler: nil,
   port: 3000,
-  index_filenames: %w( index.html ),
+  index_filenames: %w[index.html],
   root: '.',
   host: '0.0.0.0'
 }
@@ -73,7 +73,7 @@ app = Rack::Builder.new do
 end.to_app
 
 # Be quittable
-%w( INT TERM ).each do |s|
+%w[INT TERM].each do |s|
   Signal.trap(s) { handler.shutdown }
 end
 
