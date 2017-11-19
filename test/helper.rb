@@ -5,7 +5,12 @@ require 'simplecov'
 SimpleCov.start
 
 require 'codecov'
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
+  [
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::Codecov
+  ]
+)
 
 require 'adsf'
 
