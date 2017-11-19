@@ -17,7 +17,7 @@ module Adsf::Rack
         return [
           302,
           { 'Location' => new_path_info, 'Content-Type' => 'text/html' },
-          ["Redirecting you to #{new_path_info}&hellip;"]
+          ["Redirecting you to #{new_path_info}&hellip;"],
         ]
       end
 

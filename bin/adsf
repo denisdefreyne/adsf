@@ -8,7 +8,7 @@ options = {
   port: 3000,
   index_filenames: %w[index.html],
   root: '.',
-  host: '0.0.0.0'
+  host: '0.0.0.0',
 }
 
 OptionParser.new do |opts|

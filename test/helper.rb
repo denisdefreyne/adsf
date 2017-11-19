@@ -5,8 +5,8 @@ require 'codecov'
 SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
   [
     SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::Codecov
-  ]
+    SimpleCov::Formatter::Codecov,
+  ],
 )
 
 require 'rack/test'

@@ -2,6 +2,15 @@ AllCops:
   TargetRubyVersion: 2.2
   DisplayCopNames: true
 
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
+
 Metrics/LineLength:
   Enabled: false
 
