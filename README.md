@@ -1,7 +1,13 @@
+[![Gem version](https://img.shields.io/gem/v/adsf.svg)](http://rubygems.org/gems/adsf)
+[![Gem downloads](https://img.shields.io/gem/dt/adsf.svg)](http://rubygems.org/gems/adsf)
+[![Build status](https://img.shields.io/travis/ddfreyne/adsf.svg)](https://travis-ci.org/ddfreyne/adsf)
+[![Code Climate](https://img.shields.io/codeclimate/github/ddfreyne/adsf.svg)](https://codeclimate.com/github/ddfreyne/adsf)
+[![Code Coverage](https://img.shields.io/codecov/c/github/ddfreyne/adsf.svg)](https://codecov.io/gh/ddfreyne/adsf)
+
 adsf
 ====
 
-adsf (A Dead Simple Fileserver) is a tiny static file server that you can launch instantly in any directory, like this:
+_adsf_ (**A** **D**ead **S**imple **F**ileserver) is a tiny static web server that you can launch instantly in any directory, like this:
 
 	▸ ls -l
 	total 0
@@ -17,14 +23,12 @@ adsf (A Dead Simple Fileserver) is a tiny static file server that you can launch
 
 … and now you can go to http://localhost:3000/ and start browsing.
 
-You can specify a custom web root with `-r` or `--root`; the server will be started in that directory (e.g. `adsf -r public/`). If you want to specificy custom index filenames (other than the default `index.html`), you can use the `-i` or `--index-filename` option, which is a comma-separated list of filenames (e.g. `adsf -i index.html,index.xml`).
-
-adsf has one dependency, namely on Rack. It is licenced under the MIT license. Patches are always welcome; check my contact e-mail address at the bottom of this document.
+See `adsf --help` for details.
 
 Using adsf programmatically
 ---------------------------
 
-You can use adsf programmatically in your Rack applications. [nanoc](http://nanoc.stoneship.org/) uses adsf for its “view” command, for example. adsf consists of one middleware class that finds index filenames, and rewrites these requests so that Rack::File can be used to serve these files.
+You can use adsf programmatically in your Rack applications. [Nanoc](https://nanoc.ws/) uses adsf for its “view” command, for example. adsf consists of one middleware class that finds index filenames, and rewrites these requests so that Rack::File can be used to serve these files.
 
 Here’s an example middleware/application stack that runs a web server with the "public/" directory as its web root:
 
@@ -46,8 +50,3 @@ Contributors
 * Ed Brannin
 * Larissa Reis
 * Mark Meves
-
-Contact
--------
-
-You can reach me at <denis.defreyne@stoneship.org>.
