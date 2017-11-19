@@ -11,6 +11,7 @@ SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
 
 require 'rack/test'
 require 'minitest/autorun'
+require 'net/http'
 
 require 'adsf'
 
