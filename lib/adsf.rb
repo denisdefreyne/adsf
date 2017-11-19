@@ -1,5 +1,4 @@
 require 'rack'
-require 'thread'
 
 module Adsf
 end
