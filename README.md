@@ -17,9 +17,9 @@ _adsf_ (**A** **D**ead **S**imple **F**ileserver) is a tiny static web server th
 	drwxr-xr-x  2 ddfreyne  staff  68 May 29 10:04 projects
 
 	▸ adsf
-	[2009-05-29 10:04:44] INFO  WEBrick 1.3.1
-	[2009-05-29 10:04:44] INFO  ruby 1.8.7 (2008-08-11) [i686-darwin9.6.1]
-	[2009-05-29 10:04:44] INFO  WEBrick::HTTPServer#start: pid=2757 port=3000
+	[2017-11-19 11:49:20] INFO  WEBrick 1.3.1
+	[2017-11-19 11:49:20] INFO  ruby 2.4.2 (2017-09-14) [x86_64-darwin17]
+	[2017-11-19 11:49:20] INFO  WEBrick::HTTPServer#start: pid=95218 port=3000
 
 … and now you can go to http://localhost:3000/ and start browsing.
 
