@@ -14,9 +14,6 @@ options = {
 OptionParser.new do |opts|
   opts.banner = 'Usage: adsf [options]'
 
-  opts.separator ''
-  opts.separator 'Specific options:'
-
   # handler
   opts.on('-H', '--handler [handler]', 'Specify the handler to use') do |o|
     options[:handler] = o
