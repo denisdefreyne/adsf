@@ -1,6 +1,3 @@
-require 'minitest/autorun'
-require 'rack/test'
-
 require 'simplecov'
 SimpleCov.start
 
@@ -11,6 +8,9 @@ SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
     SimpleCov::Formatter::Codecov
   ]
 )
+
+require 'rack/test'
+require 'minitest/autorun'
 
 require 'adsf'
 
