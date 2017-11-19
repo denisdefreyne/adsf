@@ -1,10 +1,7 @@
-# Load unit testing stuff
 require 'minitest/autorun'
-require 'rack/test'
 require 'mocha/setup'
+require 'rack/test'
 
-# Load adsf
-$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + '/../lib'))
 require 'adsf'
 
 module Adsf::Test
