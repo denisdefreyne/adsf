@@ -1,0 +1,95 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'fileutils'
+require 'octokit'
+
+def run(*args)
+  puts 'I will execute the following:'
+  puts '    ' + args.map { |a| a =~ /\s/ ? a.inspect : a }.join(' ')
+  print 'Is this correct? [y/N] '
+  res = gets
+  unless res.strip.casecmp('y').zero?
+    warn 'Answer was not Y; release aborted.'
+    exit 1
+  end
+
+  system('echo', *args)
+  system(*args)
+
+  print 'Continue? [y/N] '
+  res = gets
+  unless res.strip.casecmp('y').zero?
+    warn 'Answer was not Y; release aborted.'
+    exit 1
+  end
+end
+
+puts '=== Logging in to GitHub’s API…'
+client = Octokit::Client.new(netrc: true)
+puts
+
+puts '=== Deleting old *.gem files…'
+Dir['*.gem'].each do |fn|
+  puts "  #{fn}…"
+  FileUtils.rm_f(fn)
+end
+puts
+
+puts '=== Verifying presence of release date…'
+unless File.readlines('NEWS.md').drop(2).first =~ / \(\d{4}-\d{2}-\d{2}\)$/
+  warn 'No proper release date found!'
+  exit 1
+end
+puts
+
+puts '=== Building new gem…'
+run('gem', 'build', 'adsf.gemspec')
+puts
+
+puts '=== Reading version…'
+require './lib/adsf/version'
+puts "Version = #{Adsf::VERSION}"
+puts
+
+puts '=== Verifying that release does not yet exist…'
+releases = client.releases('ddfreyne/adsf')
+release = releases.find { |r| r.tag_name == Adsf::VERSION }
+if release
+  warn 'Release already exists!'
+  warn 'ABORTED!'
+  exit 1
+end
+puts
+
+puts '=== Creating Git tag…'
+run('git', 'tag', '--sign', '--annotate', Adsf::VERSION, '--message', "Version #{Adsf::VERSION}")
+puts
+
+puts '=== Pushing Git data…'
+run('git', 'push', 'origin', '--tags')
+puts
+
+puts '=== Pushing gem…'
+run('gem', 'push', "adsf-#{Adsf::VERSION}.gem")
+puts
+
+puts '=== Reading release notes…'
+release_notes =
+  File.readlines('NEWS.md')
+      .drop(4)
+      .take_while { |l| l !~ /^## / }
+      .join
+puts
+
+puts '=== Creating release on GitHub…'
+sleep 3 # Give GitHub some time to detect the new tag
+is_prerelease = Adsf::VERSION =~ /a|b|rc/ || Adsf::VERSION =~ /^0/
+client.create_release(
+  'ddfreyne/adsf', Adsf::VERSION,
+  prerelease: !is_prerelease.nil?,
+  body: release_notes
+)
+puts
+
+puts 'DONE!'
