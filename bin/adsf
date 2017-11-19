@@ -6,7 +6,6 @@ require 'rack'
 require 'optparse'
 require 'adsf'
 
-# Parse options
 options = {
   handler: nil,
   port: 3000,
@@ -14,6 +13,7 @@ options = {
   root: '.',
   host: '0.0.0.0'
 }
+
 OptionParser.new do |opts|
   opts.banner = 'Usage: adsf [options]'
 
@@ -57,25 +57,10 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-# Find handler
-handler = Rack::Handler.get(options[:handler])
-handler = Rack::Handler::WEBrick if handler.nil?
+server = Adsf::Server.new(options)
 
-# Create app
-app = Rack::Builder.new do
-  use Rack::CommonLogger
-  use Rack::ShowExceptions
-  use Rack::Lint
-  use Adsf::Rack::IndexFileFinder,
-      root: options[:root],
-      index_filenames: options[:index_filenames]
-  run Rack::File.new(options[:root])
-end.to_app
-
-# Be quittable
 %w[INT TERM].each do |s|
-  Signal.trap(s) { handler.shutdown }
+  Signal.trap(s) { server.stop }
 end
 
-# Run
-handler.run(app, Port: options[:port], Host: options[:host])
+server.run
