@@ -28,21 +28,49 @@ See `adsf --help` for details.
 Using adsf programmatically
 ---------------------------
 
-You can use adsf programmatically in your Rack applications. [Nanoc](https://nanoc.ws/) uses adsf for its “view” command, for example. adsf consists of one middleware class that finds index filenames, and rewrites these requests so that Rack::File can be used to serve these files.
+### IndexFileFinder
 
-Here’s an example middleware/application stack that runs a web server with the "public/" directory as its web root:
+The `Adsf::Rack::IndexFileFinder` middleware makes Rack load an index file (e.g. `index.html`) when requesting a directory. For example, the following runs a web server with the 'public' directory as its web root:
 
-	use Adsf::Rack::IndexFileFinder, :root => "public/"
-	run Rack::File.new("public/")
+```ruby
+use Adsf::Rack::IndexFileFinder, root: 'public'
+run Rack::File.new('public')
+```
 
-The `:root` option is required; it should contain the path to the web root.
+It takes the following options:
 
-You can also specify an `:index_filenames` option, containing the names of the index filenames that will be served when a directory containing an index file is requested. Usually, this will simply be `[ 'index.html' ]`, but under different circumstances (when using IIS, for example), the array may have to be modified to include index filenames such as `default.html` or `index.xml`. Here’s an example middleware/application stack that uses custom index filenames:
+* `root` (required): the path to the web root
 
+* `index_filenames` (optional; defaults to `['index.html']`): contains the names of the index filenames that will be served when a directory containing an index file is requested. Usually, this will simply be `['index.html']`, but under different circumstances (when using IIS, for example), the array may have to be modified to include index filenames such as `default.html` or `index.xml`. Here’s an example middleware/application stack that uses custom index filenames:
+
+	```ruby
 	use Adsf::Rack::IndexFileFinder,
-	  :root => "public/",
-	  :index_filenames => %w( index.html index.xhtml index.xml )
-	run Rack::File.new("public/")
+		root: 'public',
+		index_filenames: %w[index.html index.xhtml]
+	run Rack::File.new('public')
+	```
+
+### Server
+
+`Adsf::Server` runs a web server programmatically. For example:
+
+```ruby
+server = Adsf::Server.new(root: 'public')
+
+%w[INT TERM].each do |s|
+  Signal.trap(s) { server.stop }
+end
+
+server.run
+```
+
+It takes the following options:
+
+* `root` (required): the path to the web root
+* `index_filenames` (optional; defaults to `['index.html']`): (see above)
+* `host` (optional; defaults to `'127.0.0.1'`): the address of the network interface to listen on
+* `port` (optional; defaults to `3000`): the port ot listen on
+* `handler` (optional): the Rack handler to use
 
 Contributors
 ------------
