@@ -78,3 +78,4 @@ Contributors
 * Ed Brannin
 * Larissa Reis
 * Mark Meves
+* Vipul Amler
