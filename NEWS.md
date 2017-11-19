@@ -12,7 +12,7 @@ Features:
 
 ## 1.2.0
 
-* Add `--local-only` and `--listen-address` options (#1) [Ed Brannin]
+* Added `--local-only` and `--listen-address` options (#1) [Ed Brannin]
 
 ## 1.1.1
 
@@ -26,6 +26,6 @@ Features:
 
 * Added runtime dependency on Rack
 
-## 1.0
+## 1.0.0
 
 * Initial release
