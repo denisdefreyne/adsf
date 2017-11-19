@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.has_rdoc              = false
 
-  s.files                 = Dir['[A-Z]*'] + Dir['bin/**/*'] + Dir['lib/**/*']
+  s.files                 = ['NEWS.md', 'README.md'] + Dir['[A-Z]*'] + Dir['bin/**/*'] + Dir['lib/**/*.rb']
   s.executables           = ['adsf']
   s.require_path          = 'lib'
   s.bindir                = 'bin'

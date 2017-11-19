@@ -1,3 +1,6 @@
 *.gem
 Gemfile.lock
-/coverage/
+coverage/
+tmp
+adsf/NEWS.md
+adsf/README.md

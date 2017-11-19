@@ -2,10 +2,12 @@
 
 source 'https://rubygems.org'
 
-gemspec
+gemspec path: 'adsf'
+gemspec path: 'adsf-live'
 
 group :development do
   gem 'codecov', require: false
+  gem 'faye-websocket'
   gem 'm'
   gem 'minitest'
   gem 'rack-test'

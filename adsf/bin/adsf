@@ -10,6 +10,7 @@ options = {
   index_filenames: %w[index.html],
   root: '.',
   host: '0.0.0.0',
+  live: false,
 }
 
 OptionParser.new do |opts|
@@ -42,6 +43,10 @@ OptionParser.new do |opts|
 
   opts.on('-a', '--listen-address [host]', 'Specify the address to listen to') do |o|
     options[:host] = o
+  end
+
+  opts.on('-L', '--live-reload', 'Reload on changes (requires adsf-live)') do
+    options[:live] = true
   end
 end.parse!
 

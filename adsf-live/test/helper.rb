@@ -10,12 +10,15 @@ SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
     SimpleCov::Formatter::Codecov,
   ],
 )
+SimpleCov.command_name 'test:adsf-live'
 
+require 'faye/websocket'
 require 'rack/test'
 require 'minitest/autorun'
 require 'net/http'
+require 'rack'
 
-require 'adsf'
+require 'adsf/live'
 
 module Adsf::Test
   module Rack; end

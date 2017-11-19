@@ -43,12 +43,12 @@ unless File.readlines('NEWS.md').drop(2).first =~ / \(\d{4}-\d{2}-\d{2}\)$/
 end
 puts
 
-puts '=== Building new gem…'
-run('gem', 'build', 'adsf.gemspec')
+puts '=== Building gems…'
+run('bundle', 'exec', 'rake', 'gem')
 puts
 
 puts '=== Reading version…'
-require './lib/adsf/version'
+require './adsf/lib/adsf/version'
 puts "Version = #{Adsf::VERSION}"
 puts
 
@@ -71,7 +71,8 @@ run('git', 'push', 'origin', '--tags')
 puts
 
 puts '=== Pushing gem…'
-run('gem', 'push', "adsf-#{Adsf::VERSION}.gem")
+run('gem', 'push', "adsf/adsf-#{Adsf::VERSION}.gem")
+run('gem', 'push', "adsf-live/adsf-live-#{Adsf::VERSION}.gem")
 puts
 
 puts '=== Reading release notes…'

@@ -117,4 +117,41 @@ class Adsf::Test::Server < MiniTest::Test
       end
     end
   end
+
+  def run_live_server
+    run_server(live: true) { yield }
+  end
+
+  def test_receives_update
+    run_live_server do
+      ws = Faye::WebSocket::Client.new('ws://127.0.0.1:35729/')
+
+      sleep 0.2
+      FileUtils.mkdir_p('output')
+      File.write('output/index.html', 'hello thear')
+
+      queue = SizedQueue.new(2)
+      ws.on :open do |_event|
+      end
+      ws.on :message do |event|
+        queue << event.data
+      end
+      ws.on :close do |_event|
+      end
+
+      messages = []
+      2.times { messages << queue.pop }
+
+      expected_hello_data = {
+        'command' => 'hello',
+        'protocols' => ['http://livereload.com/protocols/official-7'],
+        'serverName' => 'nanoc-view',
+      }
+
+      assert_equal expected_hello_data, JSON.parse(messages[0])
+
+      assert_equal 'reload', JSON.parse(messages[1])['command']
+      assert_match %r{adsf/tmp/index\.html$}, JSON.parse(messages[1])['path']
+    end
+  end
 end
