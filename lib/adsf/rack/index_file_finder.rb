@@ -1,9 +1,9 @@
 module Adsf::Rack
   class IndexFileFinder
-    def initialize(app, options)
+    def initialize(app, root:, index_filenames: ['index.html'])
       @app = app
-      (@root = options[:root]) || raise(ArgumentError, ':root option is required but was not given')
-      @index_filenames = options[:index_filenames] || ['index.html']
+      @root = root
+      @index_filenames = index_filenames
     end
 
     def call(env)
