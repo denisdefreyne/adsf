@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require 'mocha/setup'
 require 'rack/test'
 
 require 'adsf'
