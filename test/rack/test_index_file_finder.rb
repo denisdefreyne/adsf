@@ -1,4 +1,4 @@
-require 'test/helper'
+require 'helper'
 
 class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
   include Rack::Test::Methods
