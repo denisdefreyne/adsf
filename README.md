@@ -37,7 +37,7 @@ Here’s an example middleware/application stack that runs a web server with the
 
 The `:root` option is required; it should contain the path to the web root.
 
-You can also specify an `:index_filenames` option, containing the names of the index filenames that will be served when a directory containing an index file is requested. Usually, this will simply be `[ 'index.html' ]`, but under different circumstances (when using IIS, for exmaple), the array may have to be modified to include index filenames such as `default.html` or `index.xml`. Here’s an example middleware/application stack that uses custom index filenames:
+You can also specify an `:index_filenames` option, containing the names of the index filenames that will be served when a directory containing an index file is requested. Usually, this will simply be `[ 'index.html' ]`, but under different circumstances (when using IIS, for example), the array may have to be modified to include index filenames such as `default.html` or `index.xml`. Here’s an example middleware/application stack that uses custom index filenames:
 
 	use Adsf::Rack::IndexFileFinder,
 	  :root => "public/",
