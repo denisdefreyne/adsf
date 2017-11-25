@@ -50,6 +50,16 @@ It takes the following options:
 	run Rack::File.new('public')
 	```
 
+**Why not use `Rack::Static`?** Rack comes with `Rack::Static`, whose purpose is similar to, but not the same as, `Adsf::Rack::IndexFileFinder`. In particular:
+
+* `Adsf::Rack::IndexFileFinder` does not serve files, unlike `Rack::Static`. `IndexFileFinder` only rewrites the incoming request and passes it on (usually to `Rack::File`).
+
+* `Adsf::Rack::IndexFileFinder` supports multiple index files, while `Rack::Static` only supports one (you could have multiple `Rack::Static` middlewares, one for each index filenames, though).
+
+* `Rack::Static` will report the wrong filename on 404 pages: when requesting a directory without an index file, it will e.g. report “File not found: /index.html” rather than “File not found: /”.
+
+* When requesting a directory without specifying the trailing slash, `Adsf::Rack::IndexFileFinder` will redirect to the URL with a trailing slash, unlike `Rack::Static`. This mimics the behavior of typical HTTP servers. For example, when requesting `/foo`, when a `foo` directory exists and it contains `index.html`, `IndexFileFinder` will redirect to `/foo/`.
+
 ### Server
 
 `Adsf::Server` runs a web server programmatically. For example:
