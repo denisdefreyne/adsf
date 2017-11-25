@@ -1,16 +1,22 @@
 # adsf News
 
+## 1.3.1 (2017-11-25)
+
+Enhancements:
+
+* Added headers for CORS (#9, #12)
+
 ## 1.3.0 (2017-11-19)
 
 Features:
 
 * Added `Adsf::Server`
 
-## 1.2.1
+## 1.2.1 (2016-03-14)
 
 * Fixed compatibility with Ruby 2.3.0 (#3) [Vipul Amler]
 
-## 1.2.0
+## 1.2.0 (2013-11-29)
 
 * Added `--local-only` and `--listen-address` options (#1) [Ed Brannin]
 
