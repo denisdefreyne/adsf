@@ -41,6 +41,24 @@ class Adsf::Test::Server < MiniTest::Test
     end
   end
 
+  def test_default_config__serve_index_html_in_subdir
+    FileUtils.mkdir_p('output/foo')
+    File.write('output/foo/index.html', 'Hello there! Nanoc loves you! <3')
+    run_server do
+      assert_equal 'Hello there! Nanoc loves you! <3', Net::HTTP.get('127.0.0.1', '/foo/', 50_386)
+    end
+  end
+
+  def test_default_config__serve_index_html_in_subdir_missing_slash
+    FileUtils.mkdir_p('output/foo')
+    File.write('output/foo/index.html', 'Hello there! Nanoc loves you! <3')
+    run_server do
+      response = Net::HTTP.get_response('127.0.0.1', '/foo', 50_386)
+      assert_equal '302', response.code
+      assert_equal 'http://127.0.0.1:50386/foo/', response['Location']
+    end
+  end
+
   def test_explicit_handler__serve_index_html
     File.write('output/index.html', 'Hello there! Nanoc loves you! <3')
     run_server(handler: :webrick) do
