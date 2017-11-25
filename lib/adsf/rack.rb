@@ -4,3 +4,4 @@ module Adsf
 end
 
 require 'adsf/rack/index_file_finder'
+require 'adsf/rack/cors'
