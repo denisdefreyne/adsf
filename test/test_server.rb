@@ -87,6 +87,20 @@ class Adsf::Test::Server < MiniTest::Test
     end
   end
 
+  def test_access_control_allow_origin
+    run_server do
+      response = Net::HTTP.get_response('127.0.0.1', '/', 50_386)
+      assert_equal '*', response['Access-Control-Allow-Origin']
+    end
+  end
+
+  def test_access_control_allow_headers
+    run_server do
+      response = Net::HTTP.get_response('127.0.0.1', '/', 50_386)
+      assert_equal 'Origin, X-Requested-With, Content-Type, Accept, Range', response['Access-Control-Allow-Headers']
+    end
+  end
+
   def test_non_local_interfaces
     addresses = Socket.getifaddrs.map(&:addr).select(&:ipv4?).map(&:ip_address)
     non_local_addresses = addresses - ['127.0.0.1']

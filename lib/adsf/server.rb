@@ -45,6 +45,7 @@ module Adsf
         use ::Rack::ShowExceptions
         use ::Rack::Lint
         use ::Rack::Head
+        use Adsf::Rack::CORS
         use Adsf::Rack::IndexFileFinder,
             root: root,
             index_filenames: index_filenames
