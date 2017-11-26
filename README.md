@@ -25,6 +25,8 @@ _adsf_ (**A** **D**ead **S**imple **F**ileserver) is a tiny static web server th
 
 See `adsf --help` for details.
 
+To use `adsf --live-reload`, please install the separate `adsf-live` gem. (The live-reload support is not part of adsf itself, because the dependencies of `adsf-life` make it difficult to install under some circumstances.)
+
 Using adsf programmatically
 ---------------------------
 

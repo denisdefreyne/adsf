@@ -11,20 +11,52 @@ Style/TrailingCommaInLiteral:
 Layout/IndentArray:
   EnforcedStyle: consistent
 
-Metrics/LineLength:
-  Enabled: false
-
-Metrics/MethodLength:
-  Enabled: false
-
 Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/Documentation:
   Enabled: false
 
+Style/GuardClause:
+  Enabled: false
+
+Security/Eval:
+  Exclude:
+    - "adsf/test/test_manifest.rb"
+    - "adsf-live/test/test_manifest.rb"
+
+
+
+# ----- DISABLED (metrics) -----
+
+# Cops for metrics are disabled because they should not cause tests to fail.
+
 Metrics/AbcSize:
   Enabled: false
 
-Style/GuardClause:
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/BlockNesting:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
   Enabled: false

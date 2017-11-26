@@ -4,8 +4,9 @@ module Adsf
   class Server
     DEFAULT_HANDLER_NAME = :thin
 
-    def initialize(root:, index_filenames: ['index.html'], host: '127.0.0.1', port: 3000, handler: nil)
+    def initialize(root:, live: false, index_filenames: ['index.html'], host: '127.0.0.1', port: 3000, handler: nil)
       @root = root
+      @live = live
       @index_filenames = index_filenames
       @host = host
       @port = port
@@ -17,6 +18,7 @@ module Adsf
     def run
       handler = build_handler
       app = build_app(root: @root, index_filenames: @index_filenames)
+      start_watcher if @live
 
       url = "http://#{@host}:#{@port}/"
       puts "View the site at #{url}"
@@ -32,6 +34,12 @@ module Adsf
 
     private
 
+    def start_watcher
+      require 'adsf/live'
+
+      ::Adsf::Live::Watcher.new(root_dir: File.absolute_path(@root)).tap(&:start)
+    end
+
     def wait_for_stop_async(server)
       Thread.new { wait_for_stop(server) }
     end
@@ -42,6 +50,8 @@ module Adsf
     end
 
     def build_app(root:, index_filenames:)
+      is_live = @live
+
       ::Rack::Builder.new do
         use ::Rack::CommonLogger
         use ::Rack::ShowExceptions
@@ -51,6 +61,11 @@ module Adsf
         use Adsf::Rack::IndexFileFinder,
             root: root,
             index_filenames: index_filenames
+
+        if is_live
+          require 'adsf/live'
+          use ::Rack::LiveReload, source: :vendored
+        end
 
         run ::Rack::File.new(root)
       end.to_app

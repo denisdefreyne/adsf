@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+require 'rake/testtask'
+
+Rake::TestTask.new(:test) do |t|
+  t.test_files = Dir[__dir__ + '/test/**/test_*.rb']
+  t.libs << __dir__ + '/test'
+  t.verbose = false
+end
+
+file 'NEWS.md' => '../NEWS.md' do |task|
+  cp task.prerequisites.first, task.name
+end
+
+file 'README.md' => '../README.md' do |task|
+  cp task.prerequisites.first, task.name
+end
+
+task gem: ['NEWS.md', 'README.md'] do
+  sh('gem build *.gemspec')
+end
+
+task default: :test
