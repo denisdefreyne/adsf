@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.4.0 (2017-11-26)
+
+Features:
+
+* Added `--live-reload` option (requires `adsf-live`)
+
 ## 1.3.1 (2017-11-25)
 
 Enhancements:
