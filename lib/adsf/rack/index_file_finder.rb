@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Adsf::Rack
   class IndexFileFinder
     def initialize(app, root:, index_filenames: ['index.html'])

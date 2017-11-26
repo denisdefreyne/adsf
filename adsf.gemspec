@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/adsf/version'
 
 Gem::Specification.new do |s|
@@ -12,7 +14,7 @@ Gem::Specification.new do |s|
   s.author                = 'Denis Defreyne'
   s.email                 = 'denis.defreyne@stoneship.org'
 
-  s.required_ruby_version = '>= 2.2.0'
+  s.required_ruby_version = '~> 2.3'
   s.add_runtime_dependency('rack', '>= 1.0.0', '< 3.0.0')
 
   s.has_rdoc              = false

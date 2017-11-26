@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Adsf
   class Server
     DEFAULT_HANDLER_NAME = :thin

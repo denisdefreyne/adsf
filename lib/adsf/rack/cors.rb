@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Adsf::Rack
   class CORS
     def initialize(app)
