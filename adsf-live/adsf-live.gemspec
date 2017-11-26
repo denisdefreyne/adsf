@@ -24,6 +24,6 @@ Gem::Specification.new do |s|
 
   s.has_rdoc              = false
 
-  s.files                 = Dir['[A-Z]*'] + Dir['lib/**/*.rb']
+  s.files                 = ['NEWS.md', 'README.md'] + Dir['lib/**/*.rb']
   s.require_path          = 'lib'
 end
