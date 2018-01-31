@@ -4,7 +4,7 @@ module Adsf
   module Live
     class Watcher
       def initialize(root_dir:)
-        unless root_dir.start_with?('/')
+        unless Pathname.new(root_dir).absolute?
           raise ArgumentError, 'Watcher#initialize: The root_path argument must be an absolute path'
         end
 
