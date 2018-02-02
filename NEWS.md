@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.4.1 (2018-02-02)
+
+Fixes:
+
+* [adsf-live] Fixed Windows compatibility (#14)
+
 ## 1.4.0 (2017-11-26)
 
 Features:
