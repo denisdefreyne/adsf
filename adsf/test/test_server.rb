@@ -89,6 +89,13 @@ class Adsf::Test::Server < MiniTest::Test
     end
   end
 
+  def test_access_caching_headers
+    run_server do
+      response = Net::HTTP.get_response('127.0.0.1', '/', 50_386)
+      assert_equal 'max-age=0, stale-while-error=0', response['Cache-Control']
+    end
+  end
+
   def test_access_control_allow_origin
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/', 50_386)
