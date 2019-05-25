@@ -22,8 +22,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency('listen', '~> 3.0')
   s.add_runtime_dependency('rack-livereload', '~> 0.3')
 
-  s.has_rdoc              = false
-
   s.files                 = ['NEWS.md', 'README.md'] + Dir['lib/**/*.rb']
   s.require_path          = 'lib'
 end
