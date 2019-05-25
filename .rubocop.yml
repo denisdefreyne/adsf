@@ -5,10 +5,13 @@ AllCops:
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 
-Layout/IndentArray:
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Layout/IndentFirstArrayElement:
   EnforcedStyle: consistent
 
 Style/ClassAndModuleChildren:
@@ -18,6 +21,9 @@ Style/Documentation:
   Enabled: false
 
 Style/GuardClause:
+  Enabled: false
+
+Style/IfUnlessModifier:
   Enabled: false
 
 Security/Eval:

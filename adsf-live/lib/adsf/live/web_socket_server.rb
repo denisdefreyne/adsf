@@ -23,7 +23,7 @@ module Adsf
           data =
             JSON.dump(
               command: 'reload',
-              path:    "#{Dir.pwd}#{path}",
+              path: "#{Dir.pwd}#{path}",
             )
 
           @sockets.each { |ws| ws.send(data) }
@@ -61,8 +61,8 @@ module Adsf
       def on_socket_connected(socket)
         socket.send(
           JSON.dump(
-            command:    'hello',
-            protocols:  ['http://livereload.com/protocols/official-7'],
+            command: 'hello',
+            protocols: ['http://livereload.com/protocols/official-7'],
             serverName: 'nanoc-view',
           ),
         )
