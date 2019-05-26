@@ -4,6 +4,7 @@ README.md
 bin/adsf
 lib/adsf.rb
 lib/adsf/rack.rb
+lib/adsf/rack/caching.rb
 lib/adsf/rack/cors.rb
 lib/adsf/rack/index_file_finder.rb
 lib/adsf/server.rb
