@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.4.2 (2019-05-26)
+
+Enhancements:
+
+* Set `Cache-Control` HTTP header to prevent caching (#17, #18) [Daniel Aleksandersen]
+
 ## 1.4.1 (2018-02-02)
 
 Fixes:
