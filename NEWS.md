@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.4.3 (2019-12-06)
+
+Fixes:
+
+* Fixed incorrect Cache-Control stale-if-error header value (#20) [Chris Chapman]
+
 ## 1.4.2 (2019-05-26)
 
 Enhancements:
