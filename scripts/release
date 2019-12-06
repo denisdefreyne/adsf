@@ -2,28 +2,60 @@
 # frozen_string_literal: true
 
 require 'fileutils'
+require 'json'
+require 'netrc'
 require 'octokit'
+require 'shellwords'
+require 'uri'
 
 def run(*args)
-  puts 'I will execute the following:'
-  puts '    ' + args.map { |a| a =~ /\s/ ? a.inspect : a }.join(' ')
-  print 'Is this correct? [y/N] '
-  res = gets
-  unless res.strip.casecmp('y').zero?
-    warn 'Answer was not Y; release aborted.'
-    exit 1
-  end
-
-  system('echo', *args)
+  puts('<exec> ' + args.map { |s| Shellwords.escape(s) }.join(' '))
   system(*args)
+end
 
-  print 'Continue? [y/N] '
-  res = gets
-  unless res.strip.casecmp('y').zero?
-    warn 'Answer was not Y; release aborted.'
+if ARGV.size != 1
+  warn "usage: #{$PROGRAM_NAME} [gem-name]"
+  exit 1
+end
+
+gem_name = ARGV[0]
+
+version_constant =
+  {
+    'adsf' => 'Adsf::VERSION',
+    'adsf-live' => 'Adsf::Live::VERSION',
+  }.fetch(gem_name) do
+    warn "Error: Unknown gem name: #{gem_name}"
     exit 1
   end
-end
+
+gem_dir =
+  {
+    'adsf' => 'adsf',
+    'adsf-live' => 'adsf-live',
+  }.fetch(gem_name) do
+    warn "Error: Unknown gem name: #{gem_name}"
+    exit 1
+  end
+
+gem_path =
+  {
+    'adsf' => 'adsf',
+    'adsf-live' => 'adsf/live',
+  }.fetch(gem_name) do
+    warn "Error: Unknown gem name: #{gem_name}"
+    exit 1
+  end
+
+puts "version_constant = #{version_constant}"
+puts "gem_dir = #{gem_dir}"
+puts "gem_path = #{gem_path}"
+puts
+
+puts "=== Entering gem dir (#{gem_dir})…"
+Dir.chdir(gem_dir)
+puts Dir.getwd
+puts
 
 puts '=== Logging in to GitHub’s API…'
 client = Octokit::Client.new(netrc: true)
@@ -31,48 +63,69 @@ puts
 
 puts '=== Deleting old *.gem files…'
 Dir['*.gem'].each do |fn|
-  puts "  #{fn}…"
+  puts "deleting #{fn}…"
   FileUtils.rm_f(fn)
 end
 puts
 
-puts '=== Verifying presence of release date…'
-unless File.readlines('NEWS.md').drop(2).first =~ / \(\d{4}-\d{2}-\d{2}\)$/
-  warn 'No proper release date found!'
-  exit 1
+unless %w[adsf-live].include?(gem_name)
+  puts '=== Verifying presence of release date…'
+  release_line = File.readlines('NEWS.md').drop(2).first
+  unless / \(\d{4}-\d{2}-\d{2}\)$/.match?(release_line)
+    warn 'Error: No proper release date found!'
+    exit 1
+  end
+  unless release_line.include?(Time.now.strftime('%Y-%m-%d'))
+    warn 'Error: The release date does not match today’s date!'
+    exit 1
+  end
+  puts
 end
+
+puts '=== Reading version…'
+require "./lib/#{gem_path}/version"
+version = eval(version_constant) # rubocop:disable Security/Eval
+puts "Version = #{version}"
 puts
 
 puts '=== Building gems…'
 run('bundle', 'exec', 'rake', 'gem')
 puts
 
-puts '=== Reading version…'
-require './adsf/lib/adsf/version'
-puts "Version = #{Adsf::VERSION}"
-puts
-
-puts '=== Verifying that release does not yet exist…'
-releases = client.releases('ddfreyne/adsf')
-release = releases.find { |r| r.tag_name == Adsf::VERSION }
-if release
-  warn 'Release already exists!'
-  warn 'ABORTED!'
+puts '=== Verifying that gems were built properly…'
+gem_filename = "#{gem_name}-#{version}.gem"
+unless File.file?(gem_filename)
+  warn "Error: Could not find gem: #{gem_filename}"
   exit 1
 end
 puts
 
-puts '=== Creating Git tag…'
-run('git', 'tag', '--sign', '--annotate', Adsf::VERSION, '--message', "Version #{Adsf::VERSION}")
+puts '=== Verifying that gem version does not yet exist…'
+url = URI.parse("https://rubygems.org/api/v1/versions/#{gem_name}.json")
+response = Net::HTTP.get_response(url)
+existing_versions =
+  case response.code
+  when '404'
+    []
+  when '200'
+    JSON.parse(response.body).map { |e| e.fetch('number') }
+  else
+    warn "Error: Couldn’t fetch version information for #{gem_name} (status #{response.code})"
+    exit 1
+  end
+if existing_versions.include?(version)
+  warn "Error: #{gem_name} v#{version} already exists"
+  exit 1
+end
 puts
 
-puts '=== Pushing Git data…'
-run('git', 'push', 'origin', '--tags')
-puts
-
-puts '=== Pushing gem…'
-run('gem', 'push', "adsf/adsf-#{Adsf::VERSION}.gem")
-run('gem', 'push', "adsf-live/adsf-live-#{Adsf::VERSION}.gem")
+puts '=== Verifying that release does not yet exist…'
+releases = client.releases('ddfreyne/adsf')
+release = releases.find { |r| r.tag_name == version }
+if release
+  warn 'Error: GitHub release already exists!'
+  exit 1
+end
 puts
 
 puts '=== Reading release notes…'
@@ -83,14 +136,34 @@ release_notes =
       .join
 puts
 
-puts '=== Creating release on GitHub…'
-sleep 3 # Give GitHub some time to detect the new tag
-is_prerelease = Adsf::VERSION =~ /a|b|rc/ || Adsf::VERSION =~ /^0/
-client.create_release(
-  'ddfreyne/adsf', Adsf::VERSION,
-  prerelease: !is_prerelease.nil?,
-  body: release_notes
-)
+puts '=== Creating Git tag…'
+annotation =
+  if gem_name == 'adsf'
+    version
+  else
+    "#{gem_name}-v#{version}"
+  end
+run('git', 'tag', '--sign', '--annotate', annotation, '--message', "#{gem_name} v#{version}")
 puts
+
+puts '=== Pushing Git data…'
+run('git', 'push', 'origin', '--tags')
+puts
+
+puts '=== Pushing gem…'
+run('gem', 'push', gem_filename)
+puts
+
+if gem_name == 'adsf'
+  puts '=== Creating release on GitHub…'
+  sleep 3 # Give GitHub some time to detect the new tag
+  is_prerelease = version =~ /a|b|rc/ || version =~ /^0/
+  client.create_release(
+    'ddfreyne/adsf', version,
+    prerelease: !is_prerelease.nil?,
+    body: release_notes
+  )
+  puts
+end
 
 puts 'DONE!'
