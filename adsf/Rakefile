@@ -8,15 +8,11 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-file 'NEWS.md' => '../NEWS.md' do |task|
-  cp task.prerequisites.first, task.name
-end
-
 file 'README.md' => '../README.md' do |task|
   cp task.prerequisites.first, task.name
 end
 
-task gem: ['NEWS.md', 'README.md'] do
+task gem: ['README.md'] do
   sh('gem build *.gemspec')
 end
 
