@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.4.4 (2020-12-18)
+
+Enhancements:
+
+* Let Rack handler default to what Rack considers to be default (not Thin)
+
 ## 1.4.3 (2019-12-06)
 
 Fixes:
