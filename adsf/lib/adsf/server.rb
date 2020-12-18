@@ -2,8 +2,6 @@
 
 module Adsf
   class Server
-    DEFAULT_HANDLER_NAME = :thin
-
     def initialize(root:, live: false, index_filenames: ['index.html'], host: '127.0.0.1', port: 3000, handler: nil)
       @root = root
       @live = live
@@ -76,11 +74,7 @@ module Adsf
       if @handler
         ::Rack::Handler.get(@handler)
       else
-        begin
-          ::Rack::Handler.get(DEFAULT_HANDLER_NAME)
-        rescue LoadError
-          ::Rack::Handler::WEBrick
-        end
+        ::Rack::Handler.default
       end
     end
   end
