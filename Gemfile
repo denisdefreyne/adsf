@@ -12,5 +12,5 @@ group :development do
   gem 'minitest'
   gem 'rack-test'
   gem 'rake'
-  gem 'rubocop'
+  gem 'rubocop', '~> 0.81.0'
 end
