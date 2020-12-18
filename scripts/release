@@ -119,14 +119,16 @@ if existing_versions.include?(version)
 end
 puts
 
-puts '=== Verifying that release does not yet exist…'
-releases = client.releases('ddfreyne/adsf')
-release = releases.find { |r| r.tag_name == version }
-if release
-  warn 'Error: GitHub release already exists!'
-  exit 1
+unless %w[adsf-live].include?(gem_name)
+  puts '=== Verifying that release does not yet exist…'
+  releases = client.releases('ddfreyne/adsf')
+  release = releases.find { |r| r.tag_name == version }
+  if release
+    warn 'Error: GitHub release already exists!'
+    exit 1
+  end
+  puts
 end
-puts
 
 puts '=== Reading release notes…'
 release_notes =
