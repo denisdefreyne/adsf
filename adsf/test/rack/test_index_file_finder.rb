@@ -9,7 +9,7 @@ class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
   def app
     ::Adsf::Rack::IndexFileFinder.new(
       stub_app,
-      (@options || {}).merge(root: '.'),
+      **(@options || {}).merge(root: '.'),
     )
   end
 

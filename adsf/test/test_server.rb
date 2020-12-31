@@ -8,7 +8,7 @@ class Adsf::Test::Server < MiniTest::Test
 
   def run_server(opts = {})
     opts = { root: 'output', port: 50_386 }.merge(opts)
-    server = Adsf::Server.new(opts)
+    server = Adsf::Server.new(**opts)
     thread = Thread.new do
       Thread.current.abort_on_exception = true
       server.run
