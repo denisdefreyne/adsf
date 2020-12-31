@@ -13,5 +13,7 @@ group :development do
   gem 'rack-test'
   gem 'rake'
   gem 'rubocop', '~> 1.7'
+  gem 'rubocop-minitest', '~> 0.10.2'
+  gem 'rubocop-rake', '~> 0.5.1'
   gem 'webrick', '~> 1.7'
 end
