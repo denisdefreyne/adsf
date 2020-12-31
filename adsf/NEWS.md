@@ -1,5 +1,12 @@
 # Release notes for adsf
 
+## 1.4.5 (2020-12-31)
+
+Changes:
+
+* Added support for Ruby 3.0
+* Dropped support for Ruby 2.4 and 2.5
+
 ## 1.4.4 (2020-12-18)
 
 Enhancements:
