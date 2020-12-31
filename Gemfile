@@ -13,4 +13,5 @@ group :development do
   gem 'rack-test'
   gem 'rake'
   gem 'rubocop', '~> 0.81.0'
+  gem 'webrick', '~> 1.7'
 end
