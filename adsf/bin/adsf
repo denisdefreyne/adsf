@@ -50,7 +50,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-server = Adsf::Server.new(options)
+server = Adsf::Server.new(**options)
 
 %w[INT TERM].each do |s|
   Signal.trap(s) { server.stop }
