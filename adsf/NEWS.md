@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.4.6 (2021-05-16)
+
+Fixes:
+
+* Fixed Ruby 3.0 incompatibility
+
 ## 1.4.5 (2020-12-31)
 
 Changes:
