@@ -4,7 +4,7 @@ require 'rake/testtask'
 
 Rake::TestTask.new(:test) do |t|
   t.test_files = Dir[__dir__ + '/test/**/test_*.rb']
-  t.libs << __dir__ + '/test'
+  t.libs << (__dir__ + '/test')
   t.verbose = false
   t.warning = false # TODO: turn this back on when rack-livereload is fixed
 end

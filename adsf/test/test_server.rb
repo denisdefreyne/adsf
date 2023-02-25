@@ -19,7 +19,7 @@ class Adsf::Test::Server < MiniTest::Test
       begin
         Net::HTTP.get('127.0.0.1', '/', 50_386)
       rescue Errno::ECONNREFUSED, Errno::ECONNRESET
-        sleep(0.1 * 1.2**i)
+        sleep(0.1 * (1.2**i))
         retry
       end
       break

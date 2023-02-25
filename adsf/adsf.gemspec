@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.executables           = ['adsf']
   s.require_path          = 'lib'
   s.bindir                = 'bin'
+  s.metadata['rubygems_mfa_required'] = 'true'
 end
