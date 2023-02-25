@@ -33,7 +33,10 @@ class Adsf::Test::Server < MiniTest::Test
 
   def setup
     super
+
     FileUtils.mkdir_p('output')
+    FileUtils.cp("#{__dir__}/fixtures/sample.html", 'output/sample.html')
+    FileUtils.cp("#{__dir__}/fixtures/sample.png", 'output/sample.png')
   end
 
   def test_default_config__serve_index_html
@@ -107,6 +110,20 @@ class Adsf::Test::Server < MiniTest::Test
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/', 50_386)
       assert_equal 'Origin, X-Requested-With, Content-Type, Accept, Range', response['Access-Control-Allow-Headers']
+    end
+  end
+
+  def test_content_type_html
+    run_server do
+      response = Net::HTTP.get_response('127.0.0.1', '/sample.html', 50_386)
+      assert_equal 'text/html', response['Content-Type']
+    end
+  end
+
+  def test_content_type_png
+    run_server do
+      response = Net::HTTP.get_response('127.0.0.1', '/sample.png', 50_386)
+      assert_equal 'image/png', response['Content-Type']
     end
   end
 
