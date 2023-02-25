@@ -2,14 +2,6 @@
 
 require 'simplecov'
 SimpleCov.start
-
-require 'codecov'
-SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
-  [
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::Codecov,
-  ],
-)
 SimpleCov.command_name 'test:adsf-live'
 
 require 'faye/websocket'

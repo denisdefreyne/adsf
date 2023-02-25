@@ -6,7 +6,6 @@ gemspec path: 'adsf'
 gemspec path: 'adsf-live'
 
 group :development do
-  gem 'codecov', require: false
   gem 'faye-websocket'
   gem 'm'
   gem 'minitest'
@@ -15,5 +14,6 @@ group :development do
   gem 'rubocop', '~> 1.7'
   gem 'rubocop-minitest', '~> 0.10.2'
   gem 'rubocop-rake', '~> 0.5.1'
+  gem 'simplecov', '~> 0.21.2'
   gem 'webrick', '~> 1.7'
 end
