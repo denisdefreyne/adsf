@@ -63,7 +63,7 @@ module Adsf
 
         if is_live
           require 'adsf/live'
-          use ::Rack::LiveReload, source: :vendored
+          use ::Rack::LiveReload, no_swf: true, source: :vendored
         end
 
         run ::Rack::File.new(root)
