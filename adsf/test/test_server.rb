@@ -116,7 +116,7 @@ class Adsf::Test::Server < MiniTest::Test
   def test_content_type_html
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/sample.html', 50_386)
-      assert_equal 'text/html', response['Content-Type']
+      assert_equal 'text/html; charset=utf-8', response['Content-Type']
     end
   end
 
