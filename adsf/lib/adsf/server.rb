@@ -66,6 +66,12 @@ module Adsf
           use ::Rack::LiveReload, no_swf: true, source: :vendored
         end
 
+        use ::Rack::ResponseHeaders do |headers|
+          if headers['Content-Type'] == 'text/html'
+            headers['Content-Type'] = 'text/html; charset=utf-8'
+          end
+        end
+
         run ::Rack::File.new(root)
       end.to_app
     end

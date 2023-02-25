@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.5'
   s.add_runtime_dependency('rack', '>= 1.0.0', '< 3.0.0')
+  s.add_runtime_dependency('rack-contrib', '~> 2.3')
 
   s.files                 = ['NEWS.md', 'README.md'] + Dir['bin/**/*'] + Dir['lib/**/*.rb']
   s.executables           = ['adsf']
