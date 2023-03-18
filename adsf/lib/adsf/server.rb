@@ -72,9 +72,9 @@ module Adsf
 
     def build_handler
       if @handler
-        ::Rack::Handler.get(@handler)
+        ::Rackup::Handler.get(@handler)
       else
-        ::Rack::Handler.default
+        ::Rackup::Handler.default
       end
     end
   end

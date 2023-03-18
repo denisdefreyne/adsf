@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rack'
+require 'rackup'
 
 module Adsf
 end

@@ -11,8 +11,8 @@ module Adsf::Rack
 
       new_headers =
         headers.merge(
-          'Access-Control-Allow-Origin' => '*',
-          'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Accept, Range',
+          'access-control-allow-origin' => '*',
+          'access-control-allow-headers' => 'Origin, X-Requested-With, Content-Type, Accept, Range',
         )
 
       [status, new_headers, body]
