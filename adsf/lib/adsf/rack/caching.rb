@@ -11,7 +11,7 @@ module Adsf::Rack
 
       new_headers =
         headers.merge(
-          'Cache-Control' => 'max-age=0, stale-if-error=0',
+          'cache-control' => 'max-age=0, stale-if-error=0',
         )
 
       [status, new_headers, body]
