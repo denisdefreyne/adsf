@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.4.7 (2023-03-18)
+
+Fixes:
+
+* Added Rack 3.0 compatibility
+
 ## 1.4.6 (2021-05-16)
 
 Fixes:
