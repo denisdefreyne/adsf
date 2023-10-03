@@ -66,7 +66,7 @@ module Adsf
           use ::Rack::LiveReload, no_swf: true, source: :vendored
         end
 
-        run ::Rack::File.new(root)
+        run ::Rack::Files.new(root)
       end.to_app
     end
 

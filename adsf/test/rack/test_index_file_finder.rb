@@ -14,7 +14,7 @@ class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
   end
 
   def stub_app
-    Rack::File.new('.')
+    Rack::Files.new('.')
   end
 
   def test_get_file
