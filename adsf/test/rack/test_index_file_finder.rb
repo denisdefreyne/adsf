@@ -2,7 +2,7 @@
 
 require 'helper'
 
-class Adsf::Test::Rack::IndexFileFinder < MiniTest::Test
+class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
   include Rack::Test::Methods
   include Adsf::Test::Helpers
 

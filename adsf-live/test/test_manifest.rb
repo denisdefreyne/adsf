@@ -2,7 +2,7 @@
 
 require 'helper'
 
-class Adsf::Live::ManifestTest < MiniTest::Test
+class Adsf::Live::ManifestTest < Minitest::Test
   def test_has_correct_manifest
     manifest_lines =
       File.readlines('adsf-live.manifest').map(&:chomp).reject(&:empty?)

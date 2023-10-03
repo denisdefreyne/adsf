@@ -2,7 +2,7 @@
 
 require 'helper'
 
-class Adsf::Live::WatcherTest < MiniTest::Test
+class Adsf::Live::WatcherTest < Minitest::Test
   include Rack::Test::Methods
   include Adsf::Test::Helpers
 

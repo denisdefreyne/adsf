@@ -2,7 +2,7 @@
 
 require 'helper'
 
-class Adsf::Test::Server < MiniTest::Test
+class Adsf::Test::Server < Minitest::Test
   include Rack::Test::Methods
   include Adsf::Test::Helpers
 
