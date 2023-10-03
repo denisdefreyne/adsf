@@ -35,7 +35,7 @@ The `Adsf::Rack::IndexFileFinder` middleware makes Rack load an index file (e.g.
 
 ```ruby
 use Adsf::Rack::IndexFileFinder, root: 'public'
-run Rack::File.new('public')
+run Rack::Files.new('public')
 ```
 
 It takes the following options:
@@ -48,12 +48,12 @@ It takes the following options:
   use Adsf::Rack::IndexFileFinder,
   	root: 'public',
   	index_filenames: %w[index.html index.xhtml]
-  run Rack::File.new('public')
+  run Rack::Files.new('public')
   ```
 
 **Why not use `Rack::Static`?** Rack comes with `Rack::Static`, whose purpose is similar to, but not the same as, `Adsf::Rack::IndexFileFinder`. In particular:
 
-- `Adsf::Rack::IndexFileFinder` does not serve files, unlike `Rack::Static`. `IndexFileFinder` only rewrites the incoming request and passes it on (usually to `Rack::File`).
+- `Adsf::Rack::IndexFileFinder` does not serve files, unlike `Rack::Static`. `IndexFileFinder` only rewrites the incoming request and passes it on (usually to `Rack::Files`).
 
 - `Adsf::Rack::IndexFileFinder` supports multiple index files, while `Rack::Static` only supports one (you could have multiple `Rack::Static` middlewares, one for each index filenames, though).
 
