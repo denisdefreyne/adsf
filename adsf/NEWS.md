@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.4.8 (2023-10-14)
+
+Fixes:
+
+* Fixed deprecation warning for `Rack::File` (#30, #32)
+
 ## 1.4.7 (2023-03-18)
 
 Fixes:
