@@ -222,6 +222,8 @@ Style/ReturnNilInPredicateMethodDefinition: # new in 1.53
   Enabled: true
 Style/YAMLFileRead: # new in 1.53
   Enabled: true
+Style/SingleLineDoEndBlock: # new in 1.57
+  Enabled: true
 
 AllCops:
   TargetRubyVersion: 2.5
@@ -255,8 +257,6 @@ Security/Eval:
   Exclude:
     - "adsf/test/test_manifest.rb"
     - "adsf-live/test/test_manifest.rb"
-
-
 
 # ----- DISABLED (metrics) -----
 
