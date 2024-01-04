@@ -85,10 +85,24 @@ class Adsf::Test::Server < Minitest::Test
     end
   end
 
+  def test_default_config__no_serve_auto_extension
+    File.write('output/foo.html', 'Hello there! Nanoc loves you! <3')
+    run_server do
+      assert_equal "File not found: /foo\n", Net::HTTP.get('127.0.0.1', '/foo', 50_386)
+    end
+  end
+
   def test_index_xhtml_in_index_filenames__serve_index_xhtml
     File.write('output/index.xhtml', 'Hello there! Nanoc loves you! <3')
     run_server(index_filenames: ['index.xhtml']) do
       assert_equal 'Hello there! Nanoc loves you! <3', Net::HTTP.get('127.0.0.1', '/', 50_386)
+    end
+  end
+
+  def test_auto_extenion__serve_foo_html
+    File.write('output/foo.html', 'Hello there! Nanoc loves you! <3')
+    run_server(auto_extensions: '.html') do
+      assert_equal 'Hello there! Nanoc loves you! <3', Net::HTTP.get('127.0.0.1', '/foo', 50_386)
     end
   end
 

@@ -1,20 +1,18 @@
 # frozen_string_literal: true
 
 require 'helper'
+require 'rack/helper'
 
 class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
   include Rack::Test::Methods
   include Adsf::Test::Helpers
+  include Adsf::Test::Rack::Helpers
 
   def app
     ::Adsf::Rack::IndexFileFinder.new(
       stub_app,
-      **(@options || {}).merge(root: '.'),
+      **app_options,
     )
-  end
-
-  def stub_app
-    Rack::Files.new('.')
   end
 
   def test_get_file
@@ -73,7 +71,7 @@ class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
   end
 
   def test_get_dir_with_custom_index_file
-    @options = { index_filenames: ['list.xml'] }
+    @app_options = { index_filenames: ['list.xml'] }
 
     # Create test directory
     FileUtils.mkdir('replicants')

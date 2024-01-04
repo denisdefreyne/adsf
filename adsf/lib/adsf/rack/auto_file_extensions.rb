@@ -2,7 +2,7 @@
 
 module Adsf::Rack
   class AutoFileExtensions
-    def initialize(app, root:, extensions: ['.html', '.htm'])
+    def initialize(app, root:, extensions:)
       @app = app
       @root = root
       # Search list starts with '' so that we first look for file as requested
