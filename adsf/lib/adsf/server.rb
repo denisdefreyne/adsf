@@ -2,7 +2,15 @@
 
 module Adsf
   class Server
-    def initialize(root:, live: false, index_filenames: ['index.html'], auto_extensions: [], host: '127.0.0.1', port: 3000, handler: nil)
+    def initialize(
+      root:,
+      live: false,
+      host: '127.0.0.1',
+      port: 3000,
+      index_filenames: ['index.html'],
+      auto_extensions: [],
+      handler: nil
+    )
       @root = root
       @live = live
       @index_filenames = index_filenames
