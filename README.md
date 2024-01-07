@@ -29,9 +29,31 @@ To use `adsf --live-reload`, please install the separate `adsf-live` gem. (The l
 
 ## Using adsf programmatically
 
+### Server
+
+`Adsf::Server` runs a web server programmatically. For example:
+
+```ruby
+server = Adsf::Server.new(root: 'public')
+
+%w[INT TERM].each do |s|
+  Signal.trap(s) { server.stop }
+end
+
+server.run
+```
+
+It takes the following options:
+
+- `root` (required): the path to the web root
+- `index_filenames` (optional; defaults to `['index.html']`): (see below)
+- `host` (optional; defaults to `'127.0.0.1'`): the address of the network interface to listen on
+- `port` (optional; defaults to `3000`): the port to listen on
+- `handler` (optional): the Rack handler to use
+
 ### IndexFileFinder
 
-The `Adsf::Rack::IndexFileFinder` middleware makes Rack load an index file (e.g. `index.html`) when requesting a directory. For example, the following runs a web server with the 'public' directory as its web root:
+If you are assembling your own Rack configuration, you can use adsf’s `Adsf::Rack::IndexFileFinder` middleware to make Rack load an index file (e.g. `index.html`) when requesting a directory. For example, the following runs a web server with the 'public' directory as its web root:
 
 ```ruby
 use Adsf::Rack::IndexFileFinder, root: 'public'
@@ -61,31 +83,10 @@ It takes the following options:
 
 - When requesting a directory without specifying the trailing slash, `Adsf::Rack::IndexFileFinder` will redirect to the URL with a trailing slash, unlike `Rack::Static`. This mimics the behavior of typical HTTP servers. For example, when requesting `/foo`, when a `foo` directory exists and it contains `index.html`, `IndexFileFinder` will redirect to `/foo/`.
 
-### Server
-
-`Adsf::Server` runs a web server programmatically. For example:
-
-```ruby
-server = Adsf::Server.new(root: 'public')
-
-%w[INT TERM].each do |s|
-  Signal.trap(s) { server.stop }
-end
-
-server.run
-```
-
-It takes the following options:
-
-- `root` (required): the path to the web root
-- `index_filenames` (optional; defaults to `['index.html']`): (see above)
-- `host` (optional; defaults to `'127.0.0.1'`): the address of the network interface to listen on
-- `port` (optional; defaults to `3000`): the port ot listen on
-- `handler` (optional): the Rack handler to use
-
 ## Contributors
 
 - Ed Brannin
 - Larissa Reis
 - Mark Meves
 - Vipul Amler
+- Paul Cantrell
