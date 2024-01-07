@@ -27,7 +27,8 @@ module Adsf
       app = build_app(
         root: @root,
         index_filenames: @index_filenames,
-        auto_extensions: @auto_extensions)
+        auto_extensions: @auto_extensions,
+      )
       start_watcher if @live
 
       url = "http://#{@host}:#{@port}/"

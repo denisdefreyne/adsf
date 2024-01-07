@@ -1,4 +1,4 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
 
 require 'helper'
 require 'rack/helper'
@@ -78,7 +78,6 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
     assert last_response.ok?
     assert_equal 'triangle', last_response.body
   end
-
 
   def test_not_found
     @app_options = { extensions: ['.blatz', '.flerg', '.biffle'] }

@@ -16,11 +16,11 @@ module Adsf::Rack
       new_env = env
       @extensions.each do |ext|
         new_path = path + ext
-        if ::File.exist?(new_path)
-          new_env = env.dup  # only dup if needed
-          new_env['PATH_INFO'] += ext
-          break
-        end
+        next unless ::File.exist?(new_path)
+
+        new_env = env.dup # only dup if needed
+        new_env['PATH_INFO'] += ext
+        break
       end
 
       @app.call(new_env)
