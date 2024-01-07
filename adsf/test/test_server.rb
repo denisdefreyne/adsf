@@ -101,7 +101,7 @@ class Adsf::Test::Server < Minitest::Test
 
   def test_auto_extenion__serve_foo_html
     File.write('output/foo.html', 'Hello there! Nanoc loves you! <3')
-    run_server(auto_extensions: '.html') do
+    run_server(auto_extensions: 'html') do
       assert_equal 'Hello there! Nanoc loves you! <3', Net::HTTP.get('127.0.0.1', '/foo', 50_386)
     end
   end

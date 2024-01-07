@@ -6,7 +6,7 @@ module Adsf::Rack
       @app = app
       @root = root
       # Search list starts with '' so that we first look for file as requested
-      @extensions = [''] + Array(extensions)
+      @search_suffixes = [''] + Array(extensions).map { |ext| ".#{ext}" }
     end
 
     def call(env)
@@ -14,12 +14,12 @@ module Adsf::Rack
       path = ::File.join(@root, path_info)
 
       new_env = env
-      @extensions.each do |ext|
-        new_path = path + ext
+      @search_suffixes.each do |suffix|
+        new_path = path + suffix
         next unless ::File.exist?(new_path)
 
         new_env = env.dup # only dup if needed
-        new_env['PATH_INFO'] += ext
+        new_env['PATH_INFO'] += suffix
         break
       end
 

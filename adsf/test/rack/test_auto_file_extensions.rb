@@ -28,7 +28,7 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
   end
 
   def test_applies_single_auto_extension
-    @app_options = { extensions: '.blatz' }
+    @app_options = { extensions: 'blatz' }
 
     # Create test file
     File.write('winner.blatz', 'particle')
@@ -40,7 +40,7 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
   end
 
   def test_finds_auto_extension_later_in_list
-    @app_options = { extensions: ['.blatz', '.flerg', '.biffle'] }
+    @app_options = { extensions: %w[blatz flerg biffle] }
 
     # Create test file
     File.write('winner.flerg', 'universe')
@@ -52,7 +52,7 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
   end
 
   def test_earlier_extensions_take_precedence
-    @app_options = { extensions: ['.blatz', '.flerg', '.biffle'] }
+    @app_options = { extensions: %w[blatz flerg biffle] }
 
     # Create test file
     File.write('winner.blatz', 'universe')
@@ -66,7 +66,7 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
   end
 
   def test_no_extension_takes_precedence
-    @app_options = { extensions: ['.blatz', '.flerg', '.biffle'] }
+    @app_options = { extensions: %w[blatz flerg biffle] }
 
     # Create test file
     File.write('winner', 'triangle')
@@ -80,7 +80,7 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
   end
 
   def test_not_found
-    @app_options = { extensions: ['.blatz', '.flerg', '.biffle'] }
+    @app_options = { extensions: %w[blatz flerg biffle] }
 
     # No files to serve
 
