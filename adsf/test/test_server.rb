@@ -106,6 +106,21 @@ class Adsf::Test::Server < Minitest::Test
     end
   end
 
+  def test_auto_extenion__defers_to_subdir_with_index
+    FileUtils.mkdir_p('output/foo')
+    File.write('output/foo/index.html', 'I am a banana')
+    File.write('output/foo.html', 'Did you bring your hat?')
+
+    run_server(auto_extensions: 'html') do
+      response = Net::HTTP.get_response('127.0.0.1', '/foo', 50_386)
+      assert_equal '302', response.code
+      assert_equal 'http://127.0.0.1:50386/foo/', response['Location']
+
+      assert_equal 'I am a banana', Net::HTTP.get('127.0.0.1', '/foo/', 50_386)
+      assert_equal 'Did you bring your hat?', Net::HTTP.get('127.0.0.1', '/foo.html', 50_386)
+    end
+  end
+
   def test_access_caching_headers
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/', 50_386)
