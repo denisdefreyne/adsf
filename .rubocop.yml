@@ -224,6 +224,12 @@ Style/YAMLFileRead: # new in 1.53
   Enabled: true
 Style/SingleLineDoEndBlock: # new in 1.57
   Enabled: true
+Lint/ItWithoutArgumentsInBlock: # new in 1.59
+  Enabled: true
+Lint/LiteralAssignmentInCondition: # new in 1.58
+  Enabled: true
+Style/SuperWithArgsParentheses: # new in 1.58
+  Enabled: true
 
 AllCops:
   TargetRubyVersion: 2.5
