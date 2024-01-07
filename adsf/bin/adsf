@@ -25,6 +25,11 @@ OptionParser.new do |opts|
     exit
   end
 
+  opts.on('-V', '--version', 'Show version') do |_o|
+    puts "adsf version #{Adsf::VERSION} © 2009–… Denis Defreyne."
+    exit
+  end
+
   opts.on('-i', '--index-filenames [index-filenames]', 'Specify index filenames (comma-separated)') do |o|
     options[:index_filenames] = o.split(',')
   end
