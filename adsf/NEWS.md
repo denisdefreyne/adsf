@@ -1,5 +1,15 @@
 # Release notes for adsf
 
+## 1.5.0 (2024-01-08)
+
+Features:
+
+* Add `-x`/`--auto-extensions` option (#33) [Paul Cantrell]
+
+Enhancements:
+
+* Add `-V`/`--version` CLI option (#35)
+
 ## 1.4.8 (2023-10-14)
 
 Fixes:
