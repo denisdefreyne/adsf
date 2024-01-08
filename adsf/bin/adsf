@@ -34,6 +34,10 @@ OptionParser.new do |opts|
     options[:index_filenames] = o.split(',')
   end
 
+  opts.on('-x', '--auto-extensions [extensions]', 'Specify suffixes to automatically apply to requests (comma-separated, including dot)') do |o|
+    options[:auto_extensions] = o.split(',')
+  end
+
   opts.on('-p', '--port [port]', Integer, 'Specify the port number to use') do |o|
     options[:port] = o
   end

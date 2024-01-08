@@ -2,10 +2,19 @@
 
 module Adsf
   class Server
-    def initialize(root:, live: false, index_filenames: ['index.html'], host: '127.0.0.1', port: 3000, handler: nil)
+    def initialize(
+      root:,
+      live: false,
+      host: '127.0.0.1',
+      port: 3000,
+      index_filenames: ['index.html'],
+      auto_extensions: [],
+      handler: nil
+    )
       @root = root
       @live = live
       @index_filenames = index_filenames
+      @auto_extensions = auto_extensions
       @host = host
       @port = port
       @handler = handler
@@ -15,7 +24,11 @@ module Adsf
 
     def run
       handler = build_handler
-      app = build_app(root: @root, index_filenames: @index_filenames)
+      app = build_app(
+        root: @root,
+        index_filenames: @index_filenames,
+        auto_extensions: @auto_extensions,
+      )
       start_watcher if @live
 
       url = "http://#{@host}:#{@port}/"
@@ -47,7 +60,7 @@ module Adsf
       server.stop
     end
 
-    def build_app(root:, index_filenames:)
+    def build_app(root:, index_filenames:, auto_extensions:)
       is_live = @live
 
       ::Rack::Builder.new do
@@ -60,6 +73,9 @@ module Adsf
         use Adsf::Rack::IndexFileFinder,
             root: root,
             index_filenames: index_filenames
+        use Adsf::Rack::AutoFileExtensions,
+            root: root,
+            extensions: auto_extensions
 
         if is_live
           require 'adsf/live'

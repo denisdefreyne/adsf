@@ -47,6 +47,7 @@ It takes the following options:
 
 - `root` (required): the path to the web root
 - `index_filenames` (optional; defaults to `['index.html']`): (see below)
+- `auto_extensions` (optional; defaults to `[]`; can be a string or an array of strings): If present, the server will automatically append the given extensions when searching for files. For example, `auto_extensions: ".html"` would cause a request for `/foo` to serve `/foo.html` if there is no file or directory named `/foo`.
 - `host` (optional; defaults to `'127.0.0.1'`): the address of the network interface to listen on
 - `port` (optional; defaults to `3000`): the port to listen on
 - `handler` (optional): the Rack handler to use
