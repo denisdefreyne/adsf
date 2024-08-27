@@ -23,7 +23,7 @@ module Adsf
           data =
             JSON.dump(
               command: 'reload',
-              path: "#{Dir.pwd}#{path}",
+              path: path,
             )
 
           @sockets.each { |ws| ws.send(data) }

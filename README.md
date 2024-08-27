@@ -87,6 +87,7 @@ It takes the following options:
 ## Contributors
 
 - Ed Brannin
+- Jan M. Faber
 - Larissa Reis
 - Mark Meves
 - Vipul Amler

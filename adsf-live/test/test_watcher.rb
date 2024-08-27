@@ -78,7 +78,7 @@ class Adsf::Live::WatcherTest < Minitest::Test
       assert_equal expected_hello_data, JSON.parse(messages[0])
 
       assert_equal 'reload', JSON.parse(messages[1])['command']
-      assert_match %r{adsf(-live)?/tmp/index\.html$}, JSON.parse(messages[1])['path']
+      assert_equal '/index.html', JSON.parse(messages[1])['path']
     end
   end
 end

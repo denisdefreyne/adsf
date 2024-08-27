@@ -5,7 +5,6 @@ require 'eventmachine'
 require 'em-websocket'
 require 'json'
 require 'listen'
-require 'rack-livereload'
 
 module Adsf
   module Live
@@ -13,5 +12,6 @@ module Adsf
 end
 
 require_relative 'live/version'
+require_relative 'live/rack_livereload'
 require_relative 'live/web_socket_server'
 require_relative 'live/watcher'

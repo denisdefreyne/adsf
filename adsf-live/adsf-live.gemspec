@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency('em-websocket', '~> 0.5')
   s.add_dependency('eventmachine', '~> 1.2')
   s.add_dependency('listen', '~> 3.0')
-  s.add_dependency('rack-livereload', '~> 0.3')
 
   s.files                 = ['NEWS.md', 'README.md'] + Dir['lib/**/*.rb']
   s.require_path          = 'lib'
