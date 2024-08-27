@@ -503,7 +503,9 @@
                         return;
                     }
                 }
-                return this.reloadPage();
+                var current_path= document.location.pathname // Only reload the page if we need to
+                if (path === current_path || path === current_path+'index.html')
+                    return this.reloadPage();
             };
 
             Reloader.prototype.reloadPage = function() {
