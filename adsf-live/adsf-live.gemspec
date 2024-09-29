@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency('eventmachine', '~> 1.2')
   s.add_dependency('listen', '~> 3.0')
 
-  s.files                 = ['NEWS.md', 'README.md'] + Dir['lib/**/*.rb']
+  s.files                 = ['NEWS.md', 'README.md'] + Dir['lib/**/*.rb'] + ['vendor/livereload.js']
   s.require_path          = 'lib'
   s.metadata['rubygems_mfa_required'] = 'true'
 end
