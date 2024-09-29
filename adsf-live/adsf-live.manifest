@@ -6,3 +6,4 @@ lib/adsf/live/version.rb
 lib/adsf/live/rack_livereload.rb
 lib/adsf/live/watcher.rb
 lib/adsf/live/web_socket_server.rb
+vendor/livereload.js
