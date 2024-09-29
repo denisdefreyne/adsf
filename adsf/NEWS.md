@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.5.2 (2024-09-29)
+
+Fixes:
+
+- Fixed missing livereload.js (#41) [Jan M. Faber]
+
 ## 1.5.1 (2024-09-29)
 
 Fixes:
