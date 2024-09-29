@@ -86,7 +86,9 @@ It takes the following options:
 
 ## Contributors
 
+- Daniel Aleksandersen
 - Ed Brannin
+- Chris Chapman
 - Jan M. Faber
 - Larissa Reis
 - Mark Meves
