@@ -16,11 +16,11 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.5'
 
-  s.add_runtime_dependency('adsf', '~> 1.3')
-  s.add_runtime_dependency('em-websocket', '~> 0.5')
-  s.add_runtime_dependency('eventmachine', '~> 1.2')
-  s.add_runtime_dependency('listen', '~> 3.0')
-  s.add_runtime_dependency('rack-livereload', '~> 0.3')
+  s.add_dependency('adsf', '~> 1.3')
+  s.add_dependency('em-websocket', '~> 0.5')
+  s.add_dependency('eventmachine', '~> 1.2')
+  s.add_dependency('listen', '~> 3.0')
+  s.add_dependency('rack-livereload', '~> 0.3')
 
   s.files                 = ['NEWS.md', 'README.md'] + Dir['lib/**/*.rb']
   s.require_path          = 'lib'
