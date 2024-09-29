@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.5.1 (2024-09-29)
+
+Fixes:
+
+- Bundle livereload.js and fix eager reloading (#38) [Jan M. Faber]
+
 ## 1.5.0 (2024-01-08)
 
 Features:
