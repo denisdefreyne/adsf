@@ -3,22 +3,27 @@
 module Adsf
   module Live
     class Watcher
-      def initialize(root_dir:)
+      def initialize(root_dir:, watch_files: true)
         unless Pathname.new(root_dir).absolute?
           raise ArgumentError, 'Watcher#initialize: The root_path argument must be an absolute path'
         end
 
         @root_dir = root_dir
+        @watch_files = watch_files
       end
 
       def start
         @server = start_server
-        @listener = start_listener(@server)
+        @listener = start_listener(@server) if @watch_files
       end
 
       def stop
         @listener&.stop
         @server&.stop
+      end
+
+      def reload(paths)
+        @server.reload(paths)
       end
 
       def start_server
