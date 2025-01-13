@@ -43,12 +43,20 @@ module Adsf
       @q << true
     end
 
+    def live_reload(paths)
+      @watcher.reload(paths)
+    end
+
     private
 
     def start_watcher
       require 'adsf/live'
 
-      ::Adsf::Live::Watcher.new(root_dir: File.absolute_path(@root)).tap(&:start)
+      @watcher = ::Adsf::Live::Watcher.new(
+        root_dir: File.absolute_path(@root),
+        watch_files: @live != :manual
+      )
+      @watcher.start
     end
 
     def wait_for_stop_async(server)
