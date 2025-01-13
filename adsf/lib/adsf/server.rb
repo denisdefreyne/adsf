@@ -43,7 +43,8 @@ module Adsf
       @q << true
     end
 
-    def live_reload(paths = [nil])  # nil tells client JS to match any path
+    # Tell clients to reload the specified paths, or (by default) all paths.
+    def live_reload(paths = [nil])
       @watcher.reload(paths)
     end
 
@@ -54,7 +55,7 @@ module Adsf
 
       @watcher = ::Adsf::Live::Watcher.new(
         root_dir: File.absolute_path(@root),
-        watch_files: @live != :manual
+        watch_files: @live != :manual,
       )
       @watcher.start
     end
