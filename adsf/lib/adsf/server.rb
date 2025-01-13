@@ -43,7 +43,7 @@ module Adsf
       @q << true
     end
 
-    def live_reload(paths)
+    def live_reload(paths = [nil])  # nil tells client JS to match any path
       @watcher.reload(paths)
     end
 
