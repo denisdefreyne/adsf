@@ -491,20 +491,20 @@
                     }
                 }
                 if (options.liveCSS) {
-                    if (path.match(/\.css$/i)) {
+                    if (path && path.match(/\.css$/i)) {
                         if (this.reloadStylesheet(path)) {
                             return;
                         }
                     }
                 }
                 if (options.liveImg) {
-                    if (path.match(/\.(jpe?g|png|gif)$/i)) {
+                    if (path && path.match(/\.(jpe?g|png|gif)$/i)) {
                         this.reloadImages(path);
                         return;
                     }
                 }
                 var current_path= document.location.pathname // Only reload the page if we need to
-                if (path === current_path || path === current_path+'index.html')
+                if (path === null || path === current_path || path === current_path+'index.html')
                     return this.reloadPage();
             };
 
