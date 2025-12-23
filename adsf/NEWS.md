@@ -1,5 +1,11 @@
 # Release notes for adsf
 
+## 1.5.3 (2025-12-23)
+
+Enhancements:
+
+- Don’t load livereload.js on every request (#46) [Jan M. Faber]
+
 ## 1.5.2 (2024-09-29)
 
 Fixes:
