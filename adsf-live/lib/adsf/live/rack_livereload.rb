@@ -48,7 +48,11 @@ module Rack
     def deliver_file(file)
       [
         200,
-        { 'content-type' => 'text/javascript', 'content-length' => ::File.size(file).to_s, 'cache-control' => 'public, max-age=3600, immutable' },
+        {
+          'content-type' => 'text/javascript',
+          'content-length' => ::File.size(file).to_s,
+          'cache-control' => 'public, max-age=3600, immutable',
+        },
         [::File.read(file)],
       ]
     end
