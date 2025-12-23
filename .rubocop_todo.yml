@@ -26,17 +26,6 @@ Lint/UselessTimes:
   Exclude:
     - 'adsf-live/test/test_watcher.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Minitest/TestMethodName:
-  Exclude:
-    - 'adsf-live/test/test_watcher.rb'
-
-# Offense count: 6
-Rake/Desc:
-  Exclude:
-    - 'Rakefile'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 Style/ExplicitBlockArgument:

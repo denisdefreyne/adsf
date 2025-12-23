@@ -1,9 +1,5 @@
 inherit_from: .rubocop_todo.yml
 
-require:
-  - rubocop-minitest
-  - rubocop-rake
-
 Layout/SpaceBeforeBrackets: # (new in 1.7)
   Enabled: true
 Lint/AmbiguousAssignment: # (new in 1.7)
@@ -39,32 +35,6 @@ Style/NilLambda: # (new in 1.3)
 Style/RedundantArgument: # (new in 1.4)
   Enabled: true
 Style/SwapValues: # (new in 1.1)
-  Enabled: true
-Minitest/AssertInDelta: # (new in 0.10)
-  Enabled: true
-Minitest/AssertionInLifecycleHook: # (new in 0.10)
-  Enabled: true
-Minitest/AssertKindOf: # (new in 0.10)
-  Enabled: true
-Minitest/AssertOutput: # (new in 0.10)
-  Enabled: true
-Minitest/AssertPathExists: # (new in 0.10)
-  Enabled: true
-Minitest/AssertSilent: # (new in 0.10)
-  Enabled: true
-Minitest/LiteralAsActualArgument: # (new in 0.10)
-  Enabled: true
-Minitest/MultipleAssertions: # (new in 0.10)
-  Enabled: true
-Minitest/RefuteInDelta: # (new in 0.10)
-  Enabled: true
-Minitest/RefuteKindOf: # (new in 0.10)
-  Enabled: true
-Minitest/RefutePathExists: # (new in 0.10)
-  Enabled: true
-Minitest/TestMethodName: # (new in 0.10)
-  Enabled: true
-Minitest/UnspecifiedException: # (new in 0.10)
   Enabled: true
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true
@@ -314,52 +284,9 @@ Style/RedundantFormat: # new in 1.72
   Enabled: true
 Style/SafeNavigationChainLength: # new in 1.68
   Enabled: true
-Minitest/AssertOperator: # new in 0.32
-  Enabled: true
-Minitest/AssertPredicate: # new in 0.18
-  Enabled: true
-Minitest/AssertRaisesCompoundBody: # new in 0.21
-  Enabled: true
-Minitest/AssertRaisesWithRegexpArgument: # new in 0.22
-  Enabled: true
-Minitest/AssertSame: # new in 0.26
-  Enabled: true
-Minitest/AssertWithExpectedArgument: # new in 0.11
-  Enabled: true
-Minitest/DuplicateTestRun: # new in 0.19
-  Enabled: true
-Minitest/EmptyLineBeforeAssertionMethods: # new in 0.23
-  Enabled: true
-Minitest/Focus: # new in 0.35
-  Enabled: true
-Minitest/LifecycleHooksOrder: # new in 0.28
-  Enabled: true
-Minitest/NonExecutableTestMethod: # new in 0.34
-  Enabled: true
-Minitest/NonPublicTestMethod: # new in 0.27
-  Enabled: true
-Minitest/RedundantMessageArgument: # new in 0.34
-  Enabled: true
-Minitest/RefuteOperator: # new in 0.32
-  Enabled: true
-Minitest/RefutePredicate: # new in 0.18
-  Enabled: true
-Minitest/RefuteSame: # new in 0.26
-  Enabled: true
-Minitest/ReturnInTestMethod: # new in 0.31
-  Enabled: true
-Minitest/SkipEnsure: # new in 0.20
-  Enabled: true
-Minitest/SkipWithoutReason: # new in 0.24
-  Enabled: true
-Minitest/TestFileName: # new in 0.26
-  Enabled: true
-Minitest/UnreachableAssertion: # new in 0.14
-  Enabled: true
-Minitest/UselessAssertion: # new in 0.26
-  Enabled: true
 
 AllCops:
+  SuggestExtensions: false
   TargetRubyVersion: 2.5
   DisplayCopNames: true
 
