@@ -9,12 +9,9 @@ module Adsf::Rack
     def call(env)
       status, headers, body = *@app.call(env)
 
-      new_headers =
-        headers.merge(
-          'cache-control' => 'max-age=0, stale-if-error=0',
-        )
+      headers['cache-control'] ||= 'max-age=0, stale-if-error=0'
 
-      [status, new_headers, body]
+      [status, headers, body]
     end
   end
 end
