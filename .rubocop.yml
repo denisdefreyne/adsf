@@ -242,6 +242,122 @@ Style/SendWithLiteralMethodName: # new in 1.64
   Enabled: true
 Style/SuperArguments: # new in 1.64
   Enabled: true
+Gemspec/AttributeAssignment: # new in 1.77
+  Enabled: true
+Layout/EmptyLinesAfterModuleInclusion: # new in 1.79
+  Enabled: true
+Lint/ArrayLiteralInRegexp: # new in 1.71
+  Enabled: true
+Lint/ConstantReassignment: # new in 1.70
+  Enabled: true
+Lint/CopDirectiveSyntax: # new in 1.72
+  Enabled: true
+Lint/DuplicateSetElement: # new in 1.67
+  Enabled: true
+Lint/HashNewWithKeywordArgumentsAsDefault: # new in 1.69
+  Enabled: true
+Lint/NumericOperationWithConstantResult: # new in 1.69
+  Enabled: true
+Lint/RedundantTypeConversion: # new in 1.72
+  Enabled: true
+Lint/SharedMutableDefault: # new in 1.70
+  Enabled: true
+Lint/SuppressedExceptionInNumberConversion: # new in 1.72
+  Enabled: true
+Lint/UnescapedBracketInRegexp: # new in 1.68
+  Enabled: true
+Lint/UselessConstantScoping: # new in 1.72
+  Enabled: true
+Lint/UselessDefaultValueArgument: # new in 1.76
+  Enabled: true
+Lint/UselessDefined: # new in 1.69
+  Enabled: true
+Lint/UselessOr: # new in 1.76
+  Enabled: true
+Naming/PredicateMethod: # new in 1.76
+  Enabled: true
+Style/AmbiguousEndlessMethodDefinition: # new in 1.68
+  Enabled: true
+Style/ArrayIntersectWithSingleElement: # new in 1.81
+  Enabled: true
+Style/BitwisePredicate: # new in 1.68
+  Enabled: true
+Style/CollectionQuerying: # new in 1.77
+  Enabled: true
+Style/CombinableDefined: # new in 1.68
+  Enabled: true
+Style/ComparableBetween: # new in 1.74
+  Enabled: true
+Style/DigChain: # new in 1.69
+  Enabled: true
+Style/EmptyStringInsideInterpolation: # new in 1.76
+  Enabled: true
+Style/FileNull: # new in 1.69
+  Enabled: true
+Style/FileTouch: # new in 1.69
+  Enabled: true
+Style/HashFetchChain: # new in 1.75
+  Enabled: true
+Style/HashSlice: # new in 1.71
+  Enabled: true
+Style/ItAssignment: # new in 1.70
+  Enabled: true
+Style/ItBlockParameter: # new in 1.75
+  Enabled: true
+Style/KeywordArgumentsMerging: # new in 1.68
+  Enabled: true
+Style/ModuleMemberExistenceCheck: # new in 1.82
+  Enabled: true
+Style/RedundantArrayFlatten: # new in 1.76
+  Enabled: true
+Style/RedundantFormat: # new in 1.72
+  Enabled: true
+Style/SafeNavigationChainLength: # new in 1.68
+  Enabled: true
+Minitest/AssertOperator: # new in 0.32
+  Enabled: true
+Minitest/AssertPredicate: # new in 0.18
+  Enabled: true
+Minitest/AssertRaisesCompoundBody: # new in 0.21
+  Enabled: true
+Minitest/AssertRaisesWithRegexpArgument: # new in 0.22
+  Enabled: true
+Minitest/AssertSame: # new in 0.26
+  Enabled: true
+Minitest/AssertWithExpectedArgument: # new in 0.11
+  Enabled: true
+Minitest/DuplicateTestRun: # new in 0.19
+  Enabled: true
+Minitest/EmptyLineBeforeAssertionMethods: # new in 0.23
+  Enabled: true
+Minitest/Focus: # new in 0.35
+  Enabled: true
+Minitest/LifecycleHooksOrder: # new in 0.28
+  Enabled: true
+Minitest/NonExecutableTestMethod: # new in 0.34
+  Enabled: true
+Minitest/NonPublicTestMethod: # new in 0.27
+  Enabled: true
+Minitest/RedundantMessageArgument: # new in 0.34
+  Enabled: true
+Minitest/RefuteOperator: # new in 0.32
+  Enabled: true
+Minitest/RefutePredicate: # new in 0.18
+  Enabled: true
+Minitest/RefuteSame: # new in 0.26
+  Enabled: true
+Minitest/ReturnInTestMethod: # new in 0.31
+  Enabled: true
+Minitest/SkipEnsure: # new in 0.20
+  Enabled: true
+Minitest/SkipWithoutReason: # new in 0.24
+  Enabled: true
+Minitest/TestFileName: # new in 0.26
+  Enabled: true
+Minitest/UnreachableAssertion: # new in 0.14
+  Enabled: true
+Minitest/UselessAssertion: # new in 0.26
+  Enabled: true
 
 AllCops:
   TargetRubyVersion: 2.5

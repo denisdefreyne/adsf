@@ -23,7 +23,8 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
 
     # Request test file
     get '/winner.blatz'
-    assert last_response.ok?
+
+    assert_predicate last_response, :ok?
     assert_equal 'particle', last_response.body
   end
 
@@ -35,7 +36,8 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
 
     # Request test file
     get '/winner'
-    assert last_response.ok?
+
+    assert_predicate last_response, :ok?
     assert_equal 'particle', last_response.body
   end
 
@@ -47,7 +49,8 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
 
     # Request test file
     get '/winner'
-    assert last_response.ok?
+
+    assert_predicate last_response, :ok?
     assert_equal 'universe', last_response.body
   end
 
@@ -61,7 +64,8 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
 
     # Request test file
     get '/winner'
-    assert last_response.ok?
+
+    assert_predicate last_response, :ok?
     assert_equal 'universe', last_response.body
   end
 
@@ -75,7 +79,8 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
 
     # Request test file
     get '/winner'
-    assert last_response.ok?
+
+    assert_predicate last_response, :ok?
     assert_equal 'triangle', last_response.body
   end
 
@@ -86,6 +91,7 @@ class Adsf::Test::Rack::AutoFileExtensions < Minitest::Test
 
     # Request test file
     get '/winner'
-    assert last_response.not_found?
+
+    assert_predicate last_response, :not_found?
   end
 end

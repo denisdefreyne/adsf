@@ -40,6 +40,7 @@ class Adsf::Live::WatcherTest < Minitest::Test
         'protocols' => ['http://livereload.com/protocols/official-7'],
         'serverName' => 'nanoc-view',
       }
+
       assert_equal expected_hello_data, JSON.parse(messages[0])
     end
   end

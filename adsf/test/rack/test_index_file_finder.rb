@@ -21,7 +21,8 @@ class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
 
     # Request test file
     get '/motto.txt'
-    assert last_response.ok?
+
+    assert_predicate last_response, :ok?
     assert_equal 'More human than human', last_response.body
   end
 
@@ -31,7 +32,8 @@ class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
 
     # Request test directory
     get '/replicants'
-    assert last_response.redirect?
+
+    assert_predicate last_response, :redirect?
     assert_equal '/replicants/', last_response.location
   end
 
@@ -41,7 +43,8 @@ class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
 
     # Request test directory
     get '/replicants/'
-    assert last_response.not_found?
+
+    assert_predicate last_response, :not_found?
   end
 
   def test_get_dir_with_index_file_without_slash
@@ -53,7 +56,8 @@ class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
 
     # Request test directory
     get '/replicants'
-    assert last_response.redirect?
+
+    assert_predicate last_response, :redirect?
     assert_equal '/replicants/', last_response.location
   end
 
@@ -66,7 +70,8 @@ class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
 
     # Request test directory
     get '/replicants/'
-    assert last_response.ok?
+
+    assert_predicate last_response, :ok?
     assert_equal 'Leon, Roy, Pris, Zhora, etc.', last_response.body
   end
 
@@ -81,7 +86,8 @@ class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
 
     # Request test directory
     get '/replicants/'
-    assert last_response.ok?
+
+    assert_predicate last_response, :ok?
     assert_equal 'Leon, Roy, Pris, Zhora, etc.', last_response.body
   end
 
@@ -91,7 +97,8 @@ class Adsf::Test::Rack::IndexFileFinder < Minitest::Test
 
     # Request test directory
     get '/animal%20replicants'
-    assert last_response.redirect?
+
+    assert_predicate last_response, :redirect?
     assert_equal '/animal%20replicants/', last_response.location
   end
 end

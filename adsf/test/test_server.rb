@@ -41,6 +41,7 @@ class Adsf::Test::Server < Minitest::Test
 
   def test_default_config__serve_index_html
     File.write('output/index.html', 'Hello there! Nanoc loves you! <3')
+
     run_server do
       assert_equal 'Hello there! Nanoc loves you! <3', Net::HTTP.get('127.0.0.1', '/', 50_386)
     end
@@ -49,6 +50,7 @@ class Adsf::Test::Server < Minitest::Test
   def test_default_config__serve_index_html_in_subdir
     FileUtils.mkdir_p('output/foo')
     File.write('output/foo/index.html', 'Hello there! Nanoc loves you! <3')
+
     run_server do
       assert_equal 'Hello there! Nanoc loves you! <3', Net::HTTP.get('127.0.0.1', '/foo/', 50_386)
     end
@@ -59,6 +61,7 @@ class Adsf::Test::Server < Minitest::Test
     File.write('output/foo/index.html', 'Hello there! Nanoc loves you! <3')
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/foo', 50_386)
+
       assert_equal '302', response.code
       assert_equal 'http://127.0.0.1:50386/foo/', response['Location']
     end
@@ -66,6 +69,7 @@ class Adsf::Test::Server < Minitest::Test
 
   def test_explicit_handler__serve_index_html
     File.write('output/index.html', 'Hello there! Nanoc loves you! <3')
+
     run_server(handler: :webrick) do
       assert_equal 'Hello there! Nanoc loves you! <3', Net::HTTP.get('127.0.0.1', '/', 50_386)
     end
@@ -73,6 +77,7 @@ class Adsf::Test::Server < Minitest::Test
 
   def test_default_config__no_serve_index_xhtml
     File.write('output/index.xhtml', 'Hello there! Nanoc loves you! <3')
+
     run_server do
       assert_equal "File not found: /\n", Net::HTTP.get('127.0.0.1', '/', 50_386)
     end
@@ -80,6 +85,7 @@ class Adsf::Test::Server < Minitest::Test
 
   def test_default_config__no_serve_wrong_index
     File.write('output/index666.html', 'Hello there! Nanoc loves you! <3')
+
     run_server do
       assert_equal "File not found: /\n", Net::HTTP.get('127.0.0.1', '/', 50_386)
     end
@@ -87,6 +93,7 @@ class Adsf::Test::Server < Minitest::Test
 
   def test_default_config__no_serve_auto_extension
     File.write('output/foo.html', 'Hello there! Nanoc loves you! <3')
+
     run_server do
       assert_equal "File not found: /foo\n", Net::HTTP.get('127.0.0.1', '/foo', 50_386)
     end
@@ -94,6 +101,7 @@ class Adsf::Test::Server < Minitest::Test
 
   def test_index_xhtml_in_index_filenames__serve_index_xhtml
     File.write('output/index.xhtml', 'Hello there! Nanoc loves you! <3')
+
     run_server(index_filenames: ['index.xhtml']) do
       assert_equal 'Hello there! Nanoc loves you! <3', Net::HTTP.get('127.0.0.1', '/', 50_386)
     end
@@ -101,6 +109,7 @@ class Adsf::Test::Server < Minitest::Test
 
   def test_auto_extenion__serve_foo_html
     File.write('output/foo.html', 'Hello there! Nanoc loves you! <3')
+
     run_server(auto_extensions: 'html') do
       assert_equal 'Hello there! Nanoc loves you! <3', Net::HTTP.get('127.0.0.1', '/foo', 50_386)
     end
@@ -113,6 +122,7 @@ class Adsf::Test::Server < Minitest::Test
 
     run_server(auto_extensions: 'html') do
       response = Net::HTTP.get_response('127.0.0.1', '/foo', 50_386)
+
       assert_equal '302', response.code
       assert_equal 'http://127.0.0.1:50386/foo/', response['Location']
 
@@ -124,6 +134,7 @@ class Adsf::Test::Server < Minitest::Test
   def test_access_caching_headers
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/', 50_386)
+
       assert_equal 'max-age=0, stale-if-error=0', response['Cache-Control']
     end
   end
@@ -131,6 +142,7 @@ class Adsf::Test::Server < Minitest::Test
   def test_access_control_allow_origin
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/', 50_386)
+
       assert_equal '*', response['Access-Control-Allow-Origin']
     end
   end
@@ -138,6 +150,7 @@ class Adsf::Test::Server < Minitest::Test
   def test_access_control_allow_headers
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/', 50_386)
+
       assert_equal 'Origin, X-Requested-With, Content-Type, Accept, Range', response['Access-Control-Allow-Headers']
     end
   end
@@ -145,6 +158,7 @@ class Adsf::Test::Server < Minitest::Test
   def test_content_type_html
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/sample.html', 50_386)
+
       assert_equal 'text/html', response['Content-Type']
     end
   end
@@ -152,6 +166,7 @@ class Adsf::Test::Server < Minitest::Test
   def test_content_type_png
     run_server do
       response = Net::HTTP.get_response('127.0.0.1', '/sample.png', 50_386)
+
       assert_equal 'image/png', response['Content-Type']
     end
   end
