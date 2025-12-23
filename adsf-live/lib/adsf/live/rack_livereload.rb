@@ -46,7 +46,11 @@ module Rack
     private
 
     def deliver_file(file)
-      [200, { 'content-type' => 'text/javascript', 'content-length' => ::File.size(file).to_s }, [::File.read(file)]]
+      [
+        200,
+        { 'content-type' => 'text/javascript', 'content-length' => ::File.size(file).to_s, 'cache-control' => 'public, max-age=3600, immutable' },
+        [::File.read(file)],
+      ]
     end
 
     def template
@@ -55,7 +59,7 @@ module Rack
           RACK_LIVERELOAD_PORT = #{@options[:live_reload_port] || LIVERELOAD_PORT}
           RACK_LIVERELOAD_SCHEME = "#{@options[:live_reload_scheme] || LIVERELOAD_SCHEME}"
         </script>
-        <script src="#{livereload_source}?host=#{host_to_use}"></script>
+        <script defer src="#{livereload_source}?host=#{host_to_use}"></script>
       HTML
     end
 
