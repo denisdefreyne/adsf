@@ -2,6 +2,10 @@
 
 module Adsf::Rack
   class Caching
+    DEFAULT_HEADERS = {
+      'cache-control' => 'max-age=0, stale-if-error=0',
+    }.freeze
+
     def initialize(app)
       @app = app
     end
@@ -9,7 +13,7 @@ module Adsf::Rack
     def call(env)
       status, headers, body = *@app.call(env)
 
-      headers['cache-control'] ||= 'max-age=0, stale-if-error=0'
+      headers = DEFAULT_HEADERS.merge(headers)
 
       [status, headers, body]
     end
